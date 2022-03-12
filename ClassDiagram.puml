@@ -1,0 +1,53 @@
+@startuml
+
+class Education {
+    EducationID : int
+    Title : str
+    EducationType : str /' eventuelt EduType custom type? '/
+    Duration : int
+    Semesters : Semester List
+}
+
+class Schedule{
+    Classes : Class List
+    Date : datetime
+    updateSchedule()
+    viewSchedule()
+}
+
+class Location{
+    Address : str /'måske custom?'/
+    RoomNumber : str
+    LocationType : str
+    Capacity : int
+}
+
+class Course{
+    Schedule : Schedule
+    ECTS : int
+    CourseID : str /'måske custom?'/
+    EnrolledStudents : Student List
+    Responsible : Administration
+}
+
+class Class{
+    Time : datetime
+    ClassLocation : Location
+    ClassType : str /'måske custom?'/
+    Teachers : Teacher List
+    EnrolledStudents : Student List
+}
+
+class Login{
+    LoginType : str /'måske custom?'/
+    UserType : str /'måske custom?'/
+}
+
+class User{
+    UserSchedule : Schedule
+    PersonalInfo : str /'måske custom?'/
+    ContactInfo : str /'måske custom?'/
+}
+
+
+
