@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+Student as std
+TA as ta
+Lecturer as lct
+
+rectangle Administration as adm{
+AUS as aus
+"  Course\nSecretary" as cs
+"      Facility\nAdministration" as fa
+}
+
+package Uniflow{
+usecase "Room Allocation" as 1
+usecase "Change Schedule" as 2
+usecase "View Location" as 3
+usecase "Synchronize Schedule" as 4
+usecase "Release Schedule" as 5
+usecase "Propose schedule" as 6
+usecase "Request Change" as 7
+usecase "Create Schedule" as 8
+usecase "Approve Schedule" as 9
+usecase "View Schedule" as 10
+}
+
+std--3 #line:green
+std--4 #line:green
+std--10 #line:green
+ta--3 #line:blue
+ta--4 #line:blue
+ta--10 #line:blue
+lct--9
+lct--7
+lct--6
+lct--4
+lct--10
+lct--3
+1--aus
+2--adm
+5--adm
+6--adm
+8--adm
+9--adm
+10--adm
+
+
+@enduml
