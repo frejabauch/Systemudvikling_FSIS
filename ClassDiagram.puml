@@ -3,7 +3,7 @@
 class Education {
     EducationID : int
     Title : str
-    EducationType : str /' eventuelt EduType custom type? '/
+    EducationType : EduType
     Duration : int
     Semesters : Semester List
 }
@@ -13,10 +13,11 @@ class Schedule{
     Date : datetime
     updateSchedule()
     viewSchedule()
+    proposeSchedule()
 }
 
 class Location{
-    Address : str /'måske custom?'/
+    Address : Address
     RoomNumber : str
     LocationType : str
     Capacity : int
@@ -25,7 +26,7 @@ class Location{
 class Course{
     Schedule : Schedule
     ECTS : int
-    CourseID : str /'måske custom?'/
+    CourseID : CID
     EnrolledStudents : Student List
     Responsible : Administration
 }
@@ -33,21 +34,60 @@ class Course{
 class Class{
     Time : datetime
     ClassLocation : Location
-    ClassType : str /'måske custom?'/
+    ClassType : CType
     Teachers : Teacher List
     EnrolledStudents : Student List
+    setLocation()
+    setClassType()
 }
 
 class Login{
-    LoginType : str /'måske custom?'/
-    UserType : str /'måske custom?'/
+    LoginType : LType
+    UserType : UType
+    authenticate()
 }
 
 class User{
     UserSchedule : Schedule
-    PersonalInfo : str /'måske custom?'/
-    ContactInfo : str /'måske custom?'/
+    PersonalInfo : PInfo
+    ContactInfo : CInfo
 }
 
+class Semester{
+    Courses : Course List
+    StartDate : datetime
+}
 
+class Student{
+    Enrollment : Education
+    UserSchedule : Schedule
+    PersonalInfo : str
+    ContactInfo : str
+    setInfo()
+    updateInfo()
+}
+
+class Teacher{
+    UserSchedule : Schedule
+    PersonalInfo : str
+    ContactInfo : str
+    CourseAffiliations : Course List
+}
+
+User --o Schedule
+Course --o Schedule
+Student --o Schedule
+Teacher --o Schedule
+
+Education --o Semester
+
+Class --o Location
+
+User <|-- Student
+User <|-- Teacher
+
+Semester --> Course
+Schedule --o Class
+
+@enduml
 
