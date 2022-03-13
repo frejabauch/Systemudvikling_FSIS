@@ -1,10 +1,10 @@
 @startuml
 
 class Education {
-    EducationID : int
-    Title : str
+    EducationID : integer
+    Title : string
     EducationType : EduType
-    Duration : int
+    Duration : integer
     Semesters : Semester List
 }
 
@@ -13,22 +13,21 @@ class Schedule{
     Date : datetime
     updateSchedule()
     viewSchedule()
-    proposeSchedule()
 }
 
 class Location{
     Address : Address
-    RoomNumber : str
-    LocationType : str
-    Capacity : int
+    RoomID : RID
+    LocationType : LocType
+    Capacity : integer
 }
 
 class Course{
     Schedule : Schedule
-    ECTS : int
+    ECTS : float
     CourseID : CID
     EnrolledStudents : Student List
-    Responsible : Administration
+    Responsible : AdministrativeEmployee
 }
 
 class Class{
@@ -42,7 +41,7 @@ class Class{
 }
 
 class Login{
-    LoginType : LType
+    LoginType : LogType
     UserType : UType
     authenticate()
 }
@@ -60,34 +59,41 @@ class Semester{
 
 class Student{
     Enrollment : Education
-    UserSchedule : Schedule
-    PersonalInfo : str
-    ContactInfo : str
-    setInfo()
-    updateInfo()
+    viewSchedule()
+
 }
 
 class Teacher{
-    UserSchedule : Schedule
-    PersonalInfo : str
-    ContactInfo : str
     CourseAffiliations : Course List
+    proposeSchedule()
 }
 
-User --o Schedule
-Course --o Schedule
-Student --o Schedule
-Teacher --o Schedule
+class AdministrativeEmployee{
+    Department : string
+    approveSchedule()
+}
 
-Education --o Semester
 
-Class --o Location
+User"1" --o "1" Schedule : has a
+Course"1" --o "1" Schedule : has a
+Student"1" --o "1" Schedule : has a
+Teacher"1" --o "1" Schedule : has a
+AdministrativeEmployee"1" --o "1" Schedule : has a
 
-User <|-- Student
-User <|-- Teacher
+Education"1" --* "4..6" Semester : contains
 
-Semester --> Course
-Schedule --o Class
+Class "1" --o "1..*"Location : has a
+
+User <|-- Student : inherits
+User <|-- Teacher : inherits
+User <|-- AdministrativeEmployee : inherits
+
+Semester"1" --* "1..*" Course : contains
+Schedule"1" --* "0..*" Class : contains
+Teacher"1..*" --o "1..*" Course : teaches
+Student"1" --o "1" Education : enrolled in
+
+Login "1" -- "1" User : login
 
 @enduml
 
