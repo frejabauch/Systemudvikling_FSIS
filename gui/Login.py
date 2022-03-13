@@ -8,7 +8,6 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 import frontpage_back as fb
-import Frontpage as f
 
 class Ui_MainWindow(object):
     def openwindow(self):
