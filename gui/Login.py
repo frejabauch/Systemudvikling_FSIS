@@ -225,7 +225,7 @@ class Ui_MainWindow(object):
         self.label.setStyleSheet("\n"
 "")
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(r"C:\Users\Ejer\Downloads\ku_logo_uk_v.png"))
+        self.label.setPixmap(QtGui.QPixmap("ku_logo_uk_v.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
