@@ -7,7 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-import Propose_schedule as ps
+import Propose_schedule
 
 class Ui_MainWindow(object):
 
