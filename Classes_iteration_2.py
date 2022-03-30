@@ -16,22 +16,6 @@ class User():
     # def get_name():
     #         pass
     #Tror ikke ovenstående er nødvendige
-
-class Teacher(User):
-    def __init__(self, CourseAffiliations: list):
-        self.CourseAffiliations = CourseAffiliations
-
-    def proposeSchedule():
-        pass
-
-class Course():
-    def __init__(self, Schedule, ECTS, CourseID, ER, Responsible) -> None:
-        self.Schedule = Schedule
-        self.ECTS = ECTS
-        self.CourseID = CourseID
-        self.EnrolledStudents = ER
-        self.Responsible = Responsible
-
 class Schedule():
     def __init__(self, Classes, Date: datetime) -> None:
         self.Classes = Classes
@@ -47,6 +31,28 @@ class Schedule():
 
     def viewSchedule():
         pass
+
+    def proposeSchedule() -> None:
+        pass
+
+class Course():
+    Schedule: Schedule
+    def __init__(self, Schedule, ECTS, CourseID, ER, Responsible) -> None:
+        self.Schedule = Schedule
+        self.ECTS = ECTS
+        self.CourseID = CourseID
+        self.EnrolledStudents = ER
+        self.Responsible = Responsible
+
+class Teacher(User):
+    def __init__(self, CourseAffiliations: list):
+        self.CourseAffiliations = CourseAffiliations
+
+    def proposeSchedule(Course: Course, ):
+        Course.Schedule.proposeSchedule()
+
+
+
 
 class TimeFrame():
     def __init__(self, StartTime: datetime, EndTime: datetime) -> None:
