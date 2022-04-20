@@ -45,8 +45,10 @@ class Teacher(User):
     def __init__(self, CourseAffiliations: list):
         self.CourseAffiliations = CourseAffiliations
 
-    def proposeSchedule(Course: Course):
-        Course.Schedule.proposeSchedule()
+    def proposeSchedule(datetime: list):
+        mydict = {}
+        mydict.update({User.__name__: datetime})
+        return mydict
 
 class Admin(User):
     def __init__(self, Admin):
