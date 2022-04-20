@@ -11,6 +11,8 @@ class Education {
 class Schedule{
     Classes : Class List
     Date : datetime
+    proposeSchedule()
+    createSchedule()
     updateSchedule()
     viewSchedule()
 }
@@ -26,8 +28,9 @@ class Course{
     Schedule : Schedule
     ECTS : float
     CourseID : CID
-    EnrolledStudents : Student List
-    Responsible : AdministrativeEmployee
+    StudentList : Student[]
+    Teacher : Teacher
+    Location : Location
 }
 
 class Class{
@@ -47,9 +50,10 @@ class Login{
 }
 
 class User{
-    UserSchedule : Schedule
+    Name : String
     PersonalInfo : PInfo
     ContactInfo : CInfo
+    Role : RType
 }
 
 class Semester{
@@ -60,7 +64,6 @@ class Semester{
 class Student{
     Enrollment : Education
     viewSchedule()
-
 }
 
 class Teacher{
@@ -68,30 +71,36 @@ class Teacher{
     proposeSchedule()
 }
 
-class AdministrativeEmployee{
-    Department : string
-    approveSchedule()
+class Admin{
+    Department : String
+    inputInfo()
 }
 
+class TimeFrame{
+    StartTime : datetime
+    EndTime : datetime
+    updateTimeFrame()
+    deleteTimeFrame()
+}
 
-User"1" --o "1" Schedule : has a
-Course"1" --o "1" Schedule : has a
-Student"1" --o "1" Schedule : has a
-Teacher"1" --o "1" Schedule : has a
-AdministrativeEmployee"1" --o "1" Schedule : has a
+User"1" o-- "1" Schedule : has a
+Course"1" o-- "1" Schedule : has a
+Student"1" o-- "1" Schedule : has a
+Teacher"1" o-- "1" Schedule : has a
+AdministrativeEmployee"1" o-- "1" Schedule : has a
 
-Education"1" --* "4..6" Semester : contains
+Education"1" *-- "4..6" Semester : contains
 
-Class "1" --o "1..*"Location : has a
+Class "1" o-- "1..*"Location : has a
 
 User <|-- Student : inherits
 User <|-- Teacher : inherits
 User <|-- AdministrativeEmployee : inherits
 
-Semester"1" --* "1..*" Course : contains
-Schedule"1" --* "0..*" Class : contains
-Teacher"1..*" --o "1..*" Course : teaches
-Student"1" --o "1" Education : enrolled in
+Semester"1" *-- "1..*" Course : contains
+Schedule"1" *-- "0..*" Class : contains
+Teacher"1..*" o-- "1..*" Course : teaches
+Student"1" o-- "1" Education : enrolled in
 
 Login "1" -- "1" User : login
 

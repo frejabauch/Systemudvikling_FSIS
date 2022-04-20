@@ -28,17 +28,20 @@ autonumber
 actor Teacher
 activate System
 activate Database
+actor CourseSecretary
 Teacher -> System: Submit Schedule
 System -> Database: Verify Schedule
-alt Schedule Confirmed
-    System <-- Database: Schedule Verified
-    Teacher <-- System: Schedule Confirmed
+' alt Schedule Confirmed
+'     System <-- Database: Schedule Verified
+'     Teacher <-- System: Schedule Confirmed
 
-else Not Enough Timeslots
-    System <-- Database: Insufficient Timeslots
-    Teacher <-- System: Schedule Rejected
-end
+' else Not Enough Timeslots
+'     System <-- Database: Insufficient Timeslots
+'     Teacher <- System: Schedule Rejected
+' end
+Database -> System: Schedule Verified
+System -> Teacher: Schedule Confirmed
 
-
+System -> CourseSecretary: Send Proposed Schedule
 
 @enduml

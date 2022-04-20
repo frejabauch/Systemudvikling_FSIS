@@ -1,0 +1,36 @@
+@startuml Decorator
+
+skinparam groupInhertitance 1
+
+class User{
+    UserInfo
+    UserFunction()
+}
+
+class UserDecorator{
+    User
+    UserFunction()
+}
+
+class TADecorator{
+    UserFunction()
+}
+
+class ConcreteUser{
+    UserFuntion()
+}
+
+class ScheduleDecorator{
+    UserFunction()
+
+}
+User <|-- UserDecorator
+User <|-- ConcreteUser
+
+TADecorator --|> UserDecorator
+ScheduleDecorator --|> UserDecorator
+
+UserDecorator::User o-- User
+
+
+@enduml

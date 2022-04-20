@@ -1,0 +1,26 @@
+@startuml Composite
+
+
+class Student{
+    UpdateSchedule()
+}
+
+interface CourseUser{
+    UpdateSchedule()
+}
+
+class UserGroup{
+    Users: CourseUser[]
+    add(CourseUser)
+    remove(CourseUser)
+    UpdateSchedule()
+}
+class Admin{
+
+}
+
+CourseUser <|-- UserGroup
+CourseUser <|-- Student
+CourseUser --o UserGroup
+CourseUser::UpdateSchedule <- Admin
+@enduml
