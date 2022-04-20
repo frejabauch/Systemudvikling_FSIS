@@ -1,30 +1,28 @@
-#constructor - hvad skal der til for at lave en employee
 
 from datetime import datetime
 
 
 class User():
-    def __init__(self, name, UserSchedule, PersonalInfo, ContactInfo):
+    def __init__(self, name, PersonalInfo, ContactInfo,Role ):
         self.name = name
-        self.UserSchedule = UserSchedule
         self.PersonalInfo = PersonalInfo
-        self.Contactinfo = ContactInfo
+        self.ContactInfo = ContactInfo
+        self.Role = Role
 
-    # def set_name():
-    #         pass
-
-    # def get_name():
-    #         pass
-    #Tror ikke ovenstående er nødvendige
 class Schedule():
-    def __init__(self, Classes, Date: datetime) -> None:
+    def __init__(self, Classes, Date: datetime):
         self.Classes = Classes
         self.Date = Date
     
-    def __init__(self, TimeFrame, Date: datetime) -> None:
+    def __init__(self, TimeFrame, Date: datetime):
         self.TimeFrame = TimeFrame
         self.Date = Date
 
+    def proposeSchedule():
+        pass
+
+    def createSchedule():
+        pass
 
     def updateSchedule():
         pass
@@ -32,30 +30,34 @@ class Schedule():
     def viewSchedule():
         pass
 
-    def proposeSchedule() -> None:
-        pass
+
 
 class Course():
-    Schedule: Schedule
-    def __init__(self, Schedule, ECTS, CourseID, ER, Responsible) -> None:
+    def __init__(self, Schedule, ECTS, CourseID, StudentList, Teacher, Location):
         self.Schedule = Schedule
         self.ECTS = ECTS
         self.CourseID = CourseID
-        self.EnrolledStudents = ER
-        self.Responsible = Responsible
+        self.StudentList = StudentList
+        self.Teacher = Teacher
+        self.Location = Location
 
 class Teacher(User):
     def __init__(self, CourseAffiliations: list):
         self.CourseAffiliations = CourseAffiliations
 
-    def proposeSchedule(Course: Course, ):
+    def proposeSchedule(Course: Course):
         Course.Schedule.proposeSchedule()
 
+class Admin(User):
+    def __init__(self, Admin):
+        self.Admin = Admin
 
+    def inputInfo(Course):
+        Course.Schedule.inputInfo()
 
 
 class TimeFrame():
-    def __init__(self, StartTime: datetime, EndTime: datetime) -> None:
+    def __init__(self, StartTime: datetime, EndTime: datetime):
         self.StartTime = StartTime
         self.EndTime = EndTime
     
@@ -64,5 +66,3 @@ class TimeFrame():
 
     def deleteTimeFrame():
         pass
-    
-
