@@ -1,9 +1,10 @@
 
 from datetime import datetime
+from tokenize import String
 
 
 class User():
-    def __init__(self, name, PersonalInfo, ContactInfo,Role ):
+    def __init__(self, name, PersonalInfo, ContactInfo, Role):
         self.name = name
         self.PersonalInfo = PersonalInfo
         self.ContactInfo = ContactInfo
@@ -31,7 +32,6 @@ class Schedule():
         pass
 
 
-
 class Course():
     def __init__(self, Schedule, ECTS, CourseID, StudentList, Teacher, Location):
         self.Schedule = Schedule
@@ -42,12 +42,13 @@ class Course():
         self.Location = Location
 
 class Teacher(User):
-    def __init__(self, CourseAffiliations: list):
+    def __init__(self, name, PersonalInfo, ContactInfo, Role, CourseAffiliations: list):
+        User.__init__(self, name, PersonalInfo, ContactInfo, Role)
         self.CourseAffiliations = CourseAffiliations
 
-    def proposeSchedule(datetime: list):
+    def proposeSchedule(self, Schedule: list):
         mydict = {}
-        mydict.update({User.__name__: datetime})
+        mydict.update({self.name: Schedule})
         return mydict
 
 class Admin(User):
