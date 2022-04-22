@@ -87,7 +87,6 @@ User"1" o-- "1" Schedule : has a
 Course"1" o-- "1" Schedule : has a
 Student"1" o-- "1" Schedule : has a
 Teacher"1" o-- "1" Schedule : has a
-AdministrativeEmployee"1" o-- "1" Schedule : has a
 
 Education"1" *-- "4..6" Semester : contains
 
@@ -95,10 +94,11 @@ Class "1" o-- "1..*"Location : has a
 
 User <|-- Student : inherits
 User <|-- Teacher : inherits
-User <|-- AdministrativeEmployee : inherits
+User <|-- Admin : inherits
 
 Semester"1" *-- "1..*" Course : contains
 Schedule"1" *-- "0..*" Class : contains
+Schedule"1" *-- "0..*" TimeFrame : contains
 Teacher"1..*" o-- "1..*" Course : teaches
 Student"1" o-- "1" Education : enrolled in
 
