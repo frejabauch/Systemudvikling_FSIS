@@ -51,13 +51,22 @@ class Teacher(User):
         mydict.update({self.name: Schedule})
         return mydict
 
+
 class Admin(User):
-    def __init__(self, Admin):
+    def __init__(self, name, PersonalInfo, ContactInfo, Role, Admin):
+        User.__init__(self, name, PersonalInfo, ContactInfo, Role)
         self.Admin = Admin
 
     def inputInfo(Course):
         Course.Schedule.inputInfo()
 
+class CourseSecretary(User)
+    def __init__(self, name, PersonalInfo, ContactInfo, Role, Course_secretary):
+        User.__init__(self, name, PersonalInfo, ContactInfo, Role)
+        self.Course_secretary = Course_secretary
+
+    def createSchedule(Course):
+        Course.Schedule.createSchedule()
 
 class TimeFrame():
     def __init__(self, StartTime: datetime, EndTime: datetime):
