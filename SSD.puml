@@ -30,7 +30,7 @@ activate System
 activate Database
 actor CourseSecretary
 Teacher -> System: Submit Schedule
-System -> Database: Verify Schedule
+System -> Database: Save Schedule
 ' alt Schedule Confirmed
 '     System <-- Database: Schedule Verified
 '     Teacher <-- System: Schedule Confirmed
@@ -39,7 +39,7 @@ System -> Database: Verify Schedule
 '     System <-- Database: Insufficient Timeslots
 '     Teacher <- System: Schedule Rejected
 ' end
-Database -> System: Schedule Verified
+Database -> System: Schedule saved
 System -> Teacher: Schedule Confirmed
 
 System -> CourseSecretary: Send Proposed Schedule
