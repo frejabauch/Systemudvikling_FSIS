@@ -1,7 +1,4 @@
-
 from datetime import datetime
-from tokenize import String
-
 
 class User():
     def __init__(self, name, PersonalInfo, ContactInfo, Role):
@@ -29,6 +26,9 @@ class Schedule():
         pass
 
     def viewSchedule():
+        pass
+
+    def inputInfo():
         pass
 
 
@@ -60,7 +60,7 @@ class Admin(User):
     def inputInfo(Course):
         Course.Schedule.inputInfo()
 
-class CourseSecretary(User)
+class CourseSecretary(User):
     def __init__(self, name, PersonalInfo, ContactInfo, Role, Course_secretary):
         User.__init__(self, name, PersonalInfo, ContactInfo, Role)
         self.Course_secretary = Course_secretary

@@ -1,4 +1,4 @@
-@startuml
+@startuml ClassDiagram
 
 class Education {
     EducationID : integer
@@ -72,7 +72,6 @@ class Teacher{
 }
 
 class Admin{
-    Department : String
     inputInfo()
 }
 
@@ -81,6 +80,10 @@ class TimeFrame{
     EndTime : datetime
     updateTimeFrame()
     deleteTimeFrame()
+}
+
+class CourseSecretary{
+    createSchedule()
 }
 
 User"1" o-- "1" Schedule : has a
@@ -95,6 +98,7 @@ Class "1" o-- "1..*"Location : has a
 User <|-- Student : inherits
 User <|-- Teacher : inherits
 User <|-- Admin : inherits
+User <|-- CourseSecretary : inherits
 
 Semester"1" *-- "1..*" Course : contains
 Schedule"1" *-- "0..*" Class : contains
