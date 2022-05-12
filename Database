@@ -1,0 +1,30 @@
+CREATE TABLE `Class` (
+  `ClassID` int NOT NULL AUTO_INCREMENT,
+  `Time` datetime DEFAULT NULL,
+  `ClassType` enum('Lecture','class','meeting') DEFAULT NULL,
+  `Student_list` text,
+  `TeacherID` text,
+  `RoomID` int DEFAULT NULL,
+  PRIMARY KEY (`ClassID`),
+  KEY `RoomID` (`RoomID`),
+  CONSTRAINT `class_ibfk_1` FOREIGN KEY (`RoomID`) REFERENCES `Location` (`RoomID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `Courses` (
+  `CourseID` int NOT NULL AUTO_INCREMENT,
+  `Schedule` text,
+  `ECTS` float DEFAULT NULL,
+  `Student_list` text,
+  `TeacherID` varchar(50) DEFAULT NULL,
+  `Location` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`CourseID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `Location` (
+  `RoomID` int NOT NULL AUTO_INCREMENT,
+  `Adress` text,
+  `Location_Type` enum('Lecture hall','classroom','studyhall','studyroom') DEFAULT NULL,
+  `Capacity` int DEFAULT NULL,
+  `RoomSchedule` text,
+  PRIMARY KEY (`RoomID`)
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
