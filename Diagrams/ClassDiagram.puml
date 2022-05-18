@@ -10,11 +10,11 @@ class Education {
 
 class Schedule{
     Classes : Class List
-    Date : datetime
-    proposeSchedule()
-    createSchedule()
-    updateSchedule()
-    viewSchedule()
+    Date : Datetime
+    ProposeSchedule()
+    CreateSchedule()
+    UpdateSchedule()
+    ViewSchedule()
 }
 
 class Location{
@@ -58,32 +58,36 @@ class User{
 
 class Semester{
     Courses : Course List
-    StartDate : datetime
+    StartDate : Datetime
 }
 
 class Student{
     Enrollment : Education
-    viewSchedule()
+    ViewSchedule()
 }
 
 class Teacher{
     CourseAffiliations : Course List
-    proposeSchedule()
+    Schedule : Schedule
+    SaveProposedSchedule()
+    SendProposedSchedule()
+    CreateSchedule()
+    ViewSchedule()
 }
 
 class Admin{
-    inputInfo()
+    InputInfo()
 }
 
 class TimeFrame{
     StartTime : datetime
     EndTime : datetime
-    updateTimeFrame()
-    deleteTimeFrame()
+    UpdateTimeFrame()
+    DeleteTimeFrame()
 }
 
 class CourseSecretary{
-    createSchedule()
+    CreateSchedule()
 }
 
 User"1" o-- "1" Schedule : has a
