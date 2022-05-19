@@ -5,12 +5,13 @@ class Education {
     Title : string
     EducationType : EduType
     Duration : integer
-    Semesters : Semester List
+    Semesters : Semester[]
 }
 
 class Schedule{
-    Classes : Class List
-    Date : datetime
+    Classes : Class[]
+    StartDate : datetime
+    EndDate: datetime
     ScheduleID : Int
     Status : ScheduleStatus
     ProposeSchedule()
@@ -39,8 +40,8 @@ class Class{
     Time : datetime
     ClassLocation : Location
     ClassType : CType
-    Teachers : Teacher List
-    EnrolledStudents : Student List
+    Teachers : Teacher[]
+    EnrolledStudents : Student[]
     setLocation()
     setClassType()
 }
@@ -57,7 +58,7 @@ class User{
 }
 
 class Semester{
-    Courses : Course List
+    Courses : Course[]
     StartDate : Datetime
 }
 
@@ -67,7 +68,7 @@ class Student{
 }
 
 class Teacher{
-    CourseAffiliations : Course List
+    CourseAffiliations : Course[]
     Schedule : Schedule
     SaveProposedSchedule()
     SendProposedSchedule()
