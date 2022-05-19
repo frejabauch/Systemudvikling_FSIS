@@ -2,8 +2,9 @@ USE Iteration3;
 
 CREATE TABLE Schedule (
 	ScheduleID int not null auto_increment,
-    date datetime,
-    status enum('Proposed', 'Confirmed', 'Incomplete'),
+    StartDate date,
+    EndDate date,
+    status enum('Proposed', 'Confirmed', 'Incomplete') DEFAULT 'Incomplete',
     PRIMARY KEY (ScheduleID)
 );
 
@@ -12,7 +13,7 @@ CREATE TABLE Teacher (
     contactinfo VARCHAR(255),
     courseaffiliations VARCHAR(255),
     userID int not null auto_increment,
-    ScheduleiD int,
+    ScheduleID int,
     FOREIGN KEY (ScheduleID) references Schedule(ScheduleID),
     PRIMARY KEY (userID)
 );
@@ -50,3 +51,10 @@ CREATE TABLE Courses (
   FOREIGN KEY (ScheduleID) references Schedule(ScheduleID)
 );
 
+CREATE TABLE TimeFrame (
+	ScheduleID int,
+    StartTime time,
+    EndTime time,
+    Weekday enum('Man', 'Tirs', 'Ons', 'Tors', 'Fre') not null,
+    FOREIGN KEY (ScheduleID) references Schedule(ScheduleID)
+);

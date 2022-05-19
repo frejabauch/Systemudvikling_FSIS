@@ -11,6 +11,7 @@ class Education {
 class Schedule{
     Classes : Class List
     Date : datetime
+    ScheduleID : Int
     Status : ScheduleStatus
     ProposeSchedule()
     CreateSchedule()
@@ -79,8 +80,10 @@ class Admin{
 }
 
 class TimeFrame{
+    ScheduleID : Int
     StartTime : datetime
     EndTime : datetime
+    Weekday : Day
     UpdateTimeFrame()
     DeleteTimeFrame()
 }
