@@ -55,6 +55,7 @@ class Login{
 class User{
     Name : String
     ContactInfo : CInfo
+    UserID: UID
 }
 
 class Semester{
