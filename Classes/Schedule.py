@@ -1,10 +1,11 @@
 from datetime import datetime
 from enum import Enum
+import TimeFrame
 
 class ScheduleStatus(Enum):
     Incomplete = 1
-    Proposed = 1
-    Confirmed = 1
+    Proposed = 2
+    Confirmed = 3
 
 class Schedule():
     def __init__(self, Classes, StartDate: datetime, EndDate: datetime, ScheduleID: int, Status: ScheduleStatus):
@@ -14,7 +15,7 @@ class Schedule():
         self.ScheduleID = ScheduleID
         self.Status = Status
 
-    def __init__(self, TimeFrame, Date: datetime):
+    def __init__(self, TimeFrame: TimeFrame, Date: datetime):
         self.TimeFrame = TimeFrame
         self.Date = Date
 
@@ -28,7 +29,4 @@ class Schedule():
         pass
 
     def viewSchedule():
-        pass
-
-    def inputInfo():
         pass

@@ -1,8 +1,8 @@
-from User_class import User
+import User
 
 class Teacher(User):
-    def __init__(self, name, PersonalInfo, ContactInfo, Role, CourseAffiliations: list):
-        User.__init__(self, name, PersonalInfo, ContactInfo, Role)
+    def __init__(self, FirstName, LastName, PhoneNumber, Mail, CourseAffiliations: list):
+        User.__init__(self, FirstName, LastName, PhoneNumber, Mail)
         self.CourseAffiliations = CourseAffiliations
 
     def proposeSchedule(self, Schedule: list):

@@ -1,10 +1,10 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-import propose_schedule as ps
+# import propose_schedule as ps
 
 class Ui_MainWindow(object):
     def openWindow(self):
         self.window = QtWidgets.QMainWindow()
-        self.ui = ps.Ui_MainWindow()
+        # self.ui = ps.Ui_MainWindow()
         self.ui.setupUi(self.window)
         #MainWindow.close()
         self.window.show()

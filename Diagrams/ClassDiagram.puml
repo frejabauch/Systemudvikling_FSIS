@@ -1,19 +1,20 @@
 @startuml ClassDiagram
 
 class Education {
-    EducationID : integer
-    Title : string
+    EducationID : Int
+    Title : String
     EducationType : EduType
-    Duration : integer
+    Duration : Int
     Semesters : Semester[]
 }
 
 class Schedule{
-    Classes : Class[]
-    StartDate : datetime
-    EndDate: datetime
     ScheduleID : Int
-    Status : ScheduleStatus
+    StartDate : datetime
+    EndDate : datetime
+    ScheduleStatus : ScheduleStatus
+    AdminID : Int
+    EducationID : Int
     ProposeSchedule()
     CreateSchedule()
     UpdateSchedule()
@@ -22,16 +23,14 @@ class Schedule{
 
 class Location{
     Address : Address
-    RoomID : RID
-    LocationType : LocType
-    Capacity : integer
+    RoomID : Int
+    LocationType : LocationType
+    Capacity : Int
 }
 
 class Course{
-    Schedule : Schedule
-    ECTS : float
+    ECTS : Float
     CourseID : CID
-    StudentList : Student[]
     Teacher : Teacher
     Location : Location
 }
@@ -46,22 +45,24 @@ class Class{
     setClassType()
 }
 
-class Login{
-    LoginType : LogType
-    UserType : UType
-    authenticate()
-}
+' class Login{
+'     LoginType : LogType
+'     UserType : UType
+'     authenticate()
+' }
 
 class User{
-    Name : String
-    ContactInfo : CInfo
-    UserID: UID
+    FirstName : String
+    LastName : String
+    Mail : String
+    PhoneNumber : Int
+    UserID: UserID
 }
 
-class Semester{
-    Courses : Course[]
-    StartDate : Datetime
-}
+' class Semester{
+'     Courses : Course[]
+'     StartDate : Datetime
+' }
 
 class Student{
     Enrollment : Education
@@ -69,8 +70,7 @@ class Student{
 }
 
 class Teacher{
-    CourseAffiliations : Course[]
-    Schedule : Schedule
+    TeacherID
     SaveProposedSchedule()
     SendProposedSchedule()
     CreateSchedule()
@@ -94,12 +94,12 @@ class CourseSecretary{
     CreateSchedule()
 }
 
-User"1" o-- "1" Schedule : has a
-Course"1" o-- "1" Schedule : has a
-Student"1" o-- "1" Schedule : has a
-Teacher"1" o-- "1" Schedule : has a
+' User"1" o-- "1" Schedule : has a
+Course"1" --o "1" Schedule : has a
+' Student"1" o-- "1" Schedule : has a
+' Teacher"1" o-- "1" Schedule : has a
 
-Education"1" *-- "4..6" Semester : contains
+' Education"1" *-- "4..6" Semester : contains
 
 Class "1" o-- "1..*"Location : has a
 
@@ -108,13 +108,14 @@ User <|-- Teacher : inherits
 User <|-- Admin : inherits
 User <|-- CourseSecretary : inherits
 
-Semester"1" *-- "1..*" Course : contains
-Schedule"1" *-- "0..*" Class : contains
-Schedule"1" *-- "0..*" TimeFrame : contains
-Teacher"1..*" o-- "1..*" Course : teaches
+' Semester"1" *-- "1..*" Course : contains
+Course"1" *-- "0..*" Class : contains
+Course"1" *-- "0..*" TimeFrame : contains
+Teacher"1" --o "1" Course : teaches
 Student"1" o-- "1" Education : enrolled in
+Schedule --o Education 
 
-Login "1" -- "1" User : login
+' Login "1" -- "1" User : login
 
 @enduml
 
