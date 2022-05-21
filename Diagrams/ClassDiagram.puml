@@ -5,16 +5,19 @@ class Education {
     Title : string
     EducationType : EduType
     Duration : integer
-    Semesters : Semester List
+    Semesters : Semester[]
 }
 
 class Schedule{
-    Classes : Class List
-    Date : datetime
-    proposeSchedule()
-    createSchedule()
-    updateSchedule()
-    viewSchedule()
+    Classes : Class[]
+    StartDate : datetime
+    EndDate: datetime
+    ScheduleID : Int
+    Status : ScheduleStatus
+    ProposeSchedule()
+    CreateSchedule()
+    UpdateSchedule()
+    ViewSchedule()
 }
 
 class Location{
@@ -37,8 +40,8 @@ class Class{
     Time : datetime
     ClassLocation : Location
     ClassType : CType
-    Teachers : Teacher List
-    EnrolledStudents : Student List
+    Teachers : Teacher[]
+    EnrolledStudents : Student[]
     setLocation()
     setClassType()
 }
@@ -51,39 +54,44 @@ class Login{
 
 class User{
     Name : String
-    PersonalInfo : PInfo
     ContactInfo : CInfo
-    Role : RType
+    UserID: UID
 }
 
 class Semester{
-    Courses : Course List
-    StartDate : datetime
+    Courses : Course[]
+    StartDate : Datetime
 }
 
 class Student{
     Enrollment : Education
-    viewSchedule()
+    ViewSchedule()
 }
 
 class Teacher{
-    CourseAffiliations : Course List
-    proposeSchedule()
+    CourseAffiliations : Course[]
+    Schedule : Schedule
+    SaveProposedSchedule()
+    SendProposedSchedule()
+    CreateSchedule()
+    ViewSchedule()
 }
 
 class Admin{
-    inputInfo()
+    InputInfo()
 }
 
 class TimeFrame{
+    ScheduleID : Int
     StartTime : datetime
     EndTime : datetime
-    updateTimeFrame()
-    deleteTimeFrame()
+    Weekday : Day
+    UpdateTimeFrame()
+    DeleteTimeFrame()
 }
 
 class CourseSecretary{
-    createSchedule()
+    CreateSchedule()
 }
 
 User"1" o-- "1" Schedule : has a

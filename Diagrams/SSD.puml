@@ -1,0 +1,56 @@
+@startuml Propose schedule
+
+' autonumber
+' actor Teacher
+' Teacher -> System: Login
+
+' activate System
+' activate Database
+
+' System -> Database: Verificer bruger
+' alt succesfuldt login
+'     Database --> System: Bruger ok
+'     System -> Teacher: Menu
+
+' else Bruger ikke fundet
+'     Database --> System: Invalid bruger
+'     System -> Teacher: Log ud
+
+' end
+
+' Teacher -> System:request course schedule change
+' activate HR
+' System -> HR: Request to HR
+' HR -> System:Answer that request is received
+' System->Teacher:Show new message in inbox
+
+autonumber
+actor Teacher
+activate Uniflow
+
+Teacher -> Uniflow : Create new Schedule
+Uniflow --> Teacher : New Schedule has been created
+
+opt Send or save proposed schedule
+Teacher -> Uniflow: SaveProposeSchedule
+activate Database
+Uniflow -> Database: Store Schedule in Database
+else
+Teacher -> Uniflow: SendProposeSchedule
+Uniflow -> Database: Store Schedule in Database
+actor CourseSecretary
+Uniflow -> CourseSecretary: Send Proposed Schedule
+Uniflow --> Teacher : Notification: Schedule has been send
+end
+
+alt Schedule Confirmed
+Uniflow <-- Database: Schedule saveD
+Teacher <-- Uniflow: Schedule saved
+
+else Connection failed
+Uniflow <-- Database: Schedule not saved
+deactivate Database
+Teacher <- Uniflow: Connection to databse failed
+end
+
+@enduml
