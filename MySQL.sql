@@ -10,7 +10,7 @@ DROP TABLE Teacher;
 DROP TABLE CourseSecretary;
 DROP TABLE Education;
 SET FOREIGN_KEY_CHECKS = 1;
-USE new_Iter3;
+
 CREATE TABLE IF NOT EXISTS `Education` (
 	`EducationID` int NOT NULL, #Skal ikke være tilfældigt
     `Title` VARCHAR(255),
