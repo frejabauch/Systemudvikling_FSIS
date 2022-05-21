@@ -16,7 +16,7 @@ SELECT * FROM Teacher;
 INSERT into coursesecretary(CSID) Values('BCD234');
 SELECT * FROM coursesecretary;
 
-INSERT into admin(AdminID, UserID) Values('FGH345');
+INSERT into admin(AdminID) Values('FGH345');
 SELECT * FROM admin;
 
 INSERT into class(ClassID, StartTime, EndTime, ClassType, RoomID) Values (NULL, '2022-05-20 08:00:00', '2022-05-20 10:00:00', 'Lecture', 'A04');
@@ -28,7 +28,7 @@ SELECT * FROM course;
 INSERT into Schedule(ScheduleID, StartDate, EndDate, ScheduleStatus, CourseID, AdminID, EducationID, CSID) Values (NULL, '2022-02-01', '2022-07-01', 'Confirmed', 'NDAB19000U', 'FGH345', 312, 'BCD234');
 SELECT * FROM schedule;
 
-INSERT into student(StudentID, UserID, Enrollment, CourseID) Values ('GWT352', 312, 'NDAB19000U');
+INSERT into student(StudentID, Enrollment, CourseID) Values ('GWT352', 312, 'NDAB19000U');
 SELECT * FROM student;
 
 SELECT user.userid, user.FirstName, user.LastName, user.mail, user.PhoneNumber, Teacher.TeacherID
