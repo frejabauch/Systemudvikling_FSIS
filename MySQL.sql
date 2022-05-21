@@ -10,7 +10,7 @@ DROP TABLE Teacher;
 DROP TABLE CourseSecretary;
 DROP TABLE Education;
 SET FOREIGN_KEY_CHECKS = 1;
-
+USE new_Iter3;
 CREATE TABLE IF NOT EXISTS `Education` (
 	`EducationID` int NOT NULL, #Skal ikke være tilfældigt
     `Title` VARCHAR(255),
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `User`(
     `LastName` VARCHAR(255),
     `Mail` VARCHAR(255),
     `PhoneNumber` int,
-    `UserID` int NOT NULL AUTO_INCREMENT,
+    `UserID` VARCHAR(6),
     PRIMARY KEY (`UserID`)
 );
 
@@ -37,23 +37,20 @@ CREATE TABLE IF NOT EXISTS `Location`(
 
 CREATE TABLE IF NOT EXISTS `Teacher`(
     `TeacherID` VARCHAR(6),
-    `UserID` int NOT NULL,
     PRIMARY KEY (`TeacherID`),
-    FOREIGN KEY (`UserID`) REFERENCES `User`(`UserID`)
+    FOREIGN KEY (`TeacherID`) REFERENCES `User`(`UserID`)
 );
 
 CREATE TABLE IF NOT EXISTS `CourseSecretary`(
 	`CSID` VARCHAR(6),
-    `UserID` int NOT NULL,
     PRIMARY KEY (`CSID`),
-    FOREIGN KEY (`UserID`) REFERENCES `User`(`UserID`)
+    FOREIGN KEY (`CSID`) REFERENCES `User`(`UserID`)
 );
 
 CREATE TABLE IF NOT EXISTS `Admin`(
 	`AdminID` VARCHAR(6),
-    `UserID` int NOT NULL,
     PRIMARY KEY (`AdminID`),
-    FOREIGN KEY (`UserID`) REFERENCES `User`(`UserID`)
+    FOREIGN KEY (`AdminID`) REFERENCES `User`(`UserID`)
 );
 
 CREATE TABLE IF NOT EXISTS `Class`(
@@ -95,11 +92,10 @@ CREATE TABLE IF NOT EXISTS `Schedule`(
 
 CREATE TABLE IF NOT EXISTS `Student`(
 	`StudentID` VARCHAR(6),
-    `UserID` int NOT NULL,
     `Enrollment` int NOT NULL,
     `CourseID` VARCHAR(255),
     PRIMARY KEY (`StudentID`),
-    FOREIGN KEY (`UserID`) REFERENCES `User`(`UserID`),
+    FOREIGN KEY (`StudentID`) REFERENCES `User`(`UserID`),
     FOREIGN KEY (`Enrollment`) REFERENCES `Education`(`EducationID`)
 );
 
