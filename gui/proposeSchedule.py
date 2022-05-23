@@ -11,15 +11,54 @@ import success as s
 
 class Ui_MainWindow(object):
         dateList = []
+        def TimeList(self):
+                timeList = []
+                i = 10
+                while i<19:
+                        var_name = "Mon%i" %i
+                        var_value = getattr(self, "Mon%i"%i).isChecked()
+                        if var_value == True:
+                                timeList.append(var_name)
+                        i += 1
+                i = 10
+                while i<19:
+                        var_name = "Tue%i" %i
+                        var_value = getattr(self, "Tue%i"%i).isChecked()
+                        if var_value == True:
+                                timeList.append(var_name)
+                        i += 1
+                i = 10
+                while i<19:
+                        var_name = "Wed%i" %i
+                        var_value = getattr(self, "Wed%i"%i).isChecked()
+                        if var_value == True:
+                                timeList.append(var_name)
+                        i += 1
+                i=10
+                while i<19:
+                        var_name = "Thu%i" %i
+                        var_value = getattr(self, "Thu%i"%i).isChecked()
+                        if var_value == True:
+                                timeList.append(var_name)
+                        i += 1
+                i=10
+                while i<19:
+                        var_name = "Fri%i" %i
+                        var_value = getattr(self, "Fri%i"%i).isChecked()
+                        if var_value == True:
+                                timeList.append(var_name)
+                        i += 1
+                print(timeList)
+
+        def save(self):
+                self.TimeList()
 
         def openPopup(self):
                 self.window = QtWidgets.QWidget()
                 self.ui = s.Ui_Succes()
                 self.ui.setupUi(self.window)
                 self.window.show()
-                #Checkbox kode:
-                checkbox_list = self.findChildren(QtWidgets.QCheckBox)
-                print(checkbox_list)
+                self.TimeList()
 
         def clicked_btn(self):
                 date = self.dateTimeEdit.date().toPyDate()
@@ -717,6 +756,7 @@ class Ui_MainWindow(object):
                 self.pushButton_4.setAutoFillBackground(True)
                 self.pushButton_4.setStyleSheet("")
                 self.pushButton_4.setObjectName("pushButton_4")
+                self.pushButton_4.clicked.connect(self.save)
                 self.pushButton = QtWidgets.QPushButton(self.centralwidget)
                 self.pushButton.setGeometry(QtCore.QRect(300, 420, 71, 21))
                 self.pushButton.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
