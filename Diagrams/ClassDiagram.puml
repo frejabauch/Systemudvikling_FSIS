@@ -3,9 +3,7 @@
 class Education {
     EducationID : Int
     Title : String
-    EducationType : EduType
-    Duration : Int
-    Semesters : Semester[]
+    University : University
 }
 
 class Schedule{
@@ -36,9 +34,10 @@ class Course{
 }
 
 class Class{
-    Time : datetime
+    StartTime : datetime
+    EndTime : datetime
     ClassLocation : Location
-    ClassType : CType
+    ClassType : ClassType
     Teachers : Teacher[]
     EnrolledStudents : Student[]
     setLocation()
@@ -65,12 +64,13 @@ class User{
 ' }
 
 class Student{
+    StudentID : String
     Enrollment : Education
     ViewSchedule()
 }
 
 class Teacher{
-    TeacherID
+    TeacherID : String
     SaveProposedSchedule()
     SendProposedSchedule()
     CreateSchedule()
@@ -78,6 +78,7 @@ class Teacher{
 }
 
 class Admin{
+    AdminID : String
     InputInfo()
 }
 
@@ -91,6 +92,7 @@ class TimeFrame{
 }
 
 class CourseSecretary{
+    CSID : String
     CreateSchedule()
 }
 
