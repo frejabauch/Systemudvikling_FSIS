@@ -1,22 +1,21 @@
 from Teacher import Teacher
 from Schedule import Schedule
-from TimeFrame import TimeFrame
-import mysql.connector
-from mysql.connector import errorcode
+from TimeFrame import TimeFrame, Day
+from DatabaseConnector import DatabaseConnector
+import datetime
 
-try:
-    databaseConnector = mysql.connector.connect(user="root", password="Polythicml96.", host="127.0.0.1", database='new_Iter3')
-    # databaseCursor = databaseConnector.cursor()
-except mysql.connector.Error as error:
-    if error.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-        print("Check username or password for database")
+timeObject = datetime.datetime.now().time().isoformat('minutes')
+dbConnector = DatabaseConnector()
+dbConnector.connectToDatabase()
 
-def loadTeacherFromDatabase(databaseConnector: mysql.connector.MySQLConnection, TeacherID: str) -> Teacher:
-    databaseCursor = databaseConnector.cursor()
-    query = f"SELECT FirstName, LastName, PhoneNumber, Mail FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID WHERE TeacherID='{TeacherID}'"
-    databaseCursor.execute(query)
-    result = databaseCursor.fetchall()
-    return Teacher(*result[0])
 
-proposingTeacher = loadTeacherFromDatabase(databaseConnector, "ABC123")
+testFrame = TimeFrame(1, timeObject, timeObject, Day.Man)
 
+# print("INSERT INTO TimeFrame(ScheduleID, StartTime, EndTime, Weekday) VALUES (1, '9:00', '12:00', 'Man');")
+
+# print(f"INSERT INTO TimeFrame(ScheduleID, StartTime, EndTime, Weekday) VALUES ({testFrame.ScheduleID}, '{testFrame.StartTime}', '{testFrame.EndTime}', '{testFrame.Weekday.value}')")
+
+# proposingTeacher = dbConnector.loadTeacherFromDatabase("ABC123")
+# print(proposingTeacher.FirstName)
+
+dbConnector.saveTimeFrameToDatabase(testFrame)

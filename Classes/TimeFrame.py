@@ -2,11 +2,11 @@ from datetime import datetime
 from enum import Enum
 
 class Day(Enum):
-    Man = 1
-    Tirs = 2
-    Ons = 3
-    Tors = 4
-    Fre = 5
+    Man = "Man"
+    Tirs = "Tirs"
+    Ons = "Ons"
+    Tors = "Tors"
+    Fre = "Fre"
 
 class TimeFrame():
     def __init__(self, ScheduleID: int, StartTime: datetime, EndTime: datetime, Weekday: Day):

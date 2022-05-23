@@ -3,7 +3,7 @@ from User import User
 class Admin(User):
     def __init__(self, FirstName, LastName, PhoneNumber, Mail):
         User.__init__(self, FirstName, LastName, PhoneNumber, Mail)
-    AdminID = User.UserID
+        self.AdminID = self.UserID
     def inputInfo(Course):
         Course.Schedule.inputInfo()
 

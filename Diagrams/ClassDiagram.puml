@@ -28,7 +28,7 @@ class Location{
 
 class Course{
     ECTS : Float
-    CourseID : CID
+    CourseID : CourseID
     Teacher : Teacher
     Location : Location
 }
@@ -115,7 +115,7 @@ Course"1" *-- "0..*" Class : contains
 Course"1" *-- "0..*" TimeFrame : contains
 Teacher"1" --o "1" Course : teaches
 Student"1" o-- "1" Education : enrolled in
-Schedule --o Education 
+Schedule o-- Education 
 
 ' Login "1" -- "1" User : login
 

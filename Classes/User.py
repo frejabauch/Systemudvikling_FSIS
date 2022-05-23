@@ -9,7 +9,6 @@ class UserID():
 
     
 class User:
-    UserID = UserID()
 
     def __new__(cls, *args, **kwargs): #Prevent instantiation of base 'User' class 
         if cls is User:
@@ -22,6 +21,7 @@ class User:
         self.LastName = LastName
         self.PhoneNumber = PhoneNumber
         self.Mail = Mail
+        self.UserID = UserID()
 
 # newUser = User("Peter", "Leasy", 88888888, "peter@leasy.dk")
 # print(newUser.UserID)
