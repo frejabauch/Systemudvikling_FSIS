@@ -7,58 +7,28 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtWidgets import QCheckBox
 import success as s
 
 class Ui_MainWindow(object):
         dateList = []
-        def TimeList(self):
+        def timeList(self):
                 timeList = []
-                i = 10
-                while i<19:
-                        var_name = "Mon%i" %i
-                        var_value = getattr(self, "Mon%i"%i).isChecked()
-                        if var_value == True:
-                                timeList.append(var_name)
-                        i += 1
-                i = 10
-                while i<19:
-                        var_name = "Tue%i" %i
-                        var_value = getattr(self, "Tue%i"%i).isChecked()
-                        if var_value == True:
-                                timeList.append(var_name)
-                        i += 1
-                i = 10
-                while i<19:
-                        var_name = "Wed%i" %i
-                        var_value = getattr(self, "Wed%i"%i).isChecked()
-                        if var_value == True:
-                                timeList.append(var_name)
-                        i += 1
-                i=10
-                while i<19:
-                        var_name = "Thu%i" %i
-                        var_value = getattr(self, "Thu%i"%i).isChecked()
-                        if var_value == True:
-                                timeList.append(var_name)
-                        i += 1
-                i=10
-                while i<19:
-                        var_name = "Fri%i" %i
-                        var_value = getattr(self, "Fri%i"%i).isChecked()
-                        if var_value == True:
-                                timeList.append(var_name)
-                        i += 1
-                print(timeList)
+                objlist = self.scrollAreaWidgetContents_2.findChildren(QCheckBox)
+
+                for o in objlist:
+                        if o.isChecked():
+                                timeList.append(o.objectName())
 
         def save(self):
-                self.TimeList()
+                self.timeList()
 
         def openPopup(self):
                 self.window = QtWidgets.QWidget()
                 self.ui = s.Ui_Succes()
                 self.ui.setupUi(self.window)
                 self.window.show()
-                self.TimeList()
+                self.timeList()
 
         def clicked_btn(self):
                 date = self.dateTimeEdit.date().toPyDate()
