@@ -9,7 +9,6 @@ class UserID():
 
     
 class User:
-
     def __new__(cls, *args, **kwargs): #Prevent instantiation of base 'User' class 
         if cls is User:
             raise TypeError(f"Only subclasses of '{cls.__name__}' may be instantiated")
