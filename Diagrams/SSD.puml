@@ -52,6 +52,13 @@ end
 else
 Teacher -> Uniflow: SendProposeSchedule()
 Uniflow -> Database: Store Schedule in Database
+alt Schedule Confirmed
+Uniflow <-- Database: Schedule saved
+Teacher <-- Uniflow: Schedule saved
+else Connection failed
+Uniflow <-- Database: Schedule not saved
+Teacher <- Uniflow: Connection to database failed
+end
 deactivate Database
 
 Uniflow -> CourseSecretary: Send Proposed Schedule
