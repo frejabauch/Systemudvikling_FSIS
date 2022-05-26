@@ -12,7 +12,11 @@ class loginUi(QtWidgets.QMainWindow):
         #Knapper:
         self.loginButton.clicked.connect(self.openWindow)
 
+    def saveUser(self):
+        bruger = self.username.text()
+
     def openWindow(self):
+        self.saveUser()
         self.ui = frontpage_backUi()
         self.ui.show()
         self.close()
