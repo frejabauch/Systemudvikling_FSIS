@@ -26,31 +26,37 @@
 
 autonumber
 actor Teacher
-activate Uniflow
+participant Uniflow
+database Database
+actor CourseSecretary
 
 Teacher -> Uniflow : Create new Schedule
+activate Uniflow
 Uniflow --> Teacher : New Schedule has been created
 
 opt Send or save proposed schedule
-Teacher -> Uniflow: SaveProposeSchedule
+Teacher -> Uniflow: SaveProposeSchedule()
+
+Uniflow -> Database: Store Schedule in Database
 activate Database
-Uniflow -> Database: Store Schedule in Database
-else
-Teacher -> Uniflow: SendProposeSchedule
-Uniflow -> Database: Store Schedule in Database
-actor CourseSecretary
-Uniflow -> CourseSecretary: Send Proposed Schedule
-Uniflow --> Teacher : Notification: Schedule has been send
-end
 
 alt Schedule Confirmed
-Uniflow <-- Database: Schedule saveD
+Uniflow <-- Database: Schedule saved
 Teacher <-- Uniflow: Schedule saved
-
 else Connection failed
 Uniflow <-- Database: Schedule not saved
+Teacher <- Uniflow: Connection to database failed
+end
+
+
+else
+Teacher -> Uniflow: SendProposeSchedule()
+Uniflow -> Database: Store Schedule in Database
 deactivate Database
-Teacher <- Uniflow: Connection to databse failed
+
+Uniflow -> CourseSecretary: Send Proposed Schedule
+Uniflow --> Teacher : Notification: Schedule has been send
+deactivate Uniflow
 end
 
 @enduml
