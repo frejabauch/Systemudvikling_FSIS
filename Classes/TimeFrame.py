@@ -8,6 +8,9 @@ class Day(Enum):
     Thu = "Thu"
     Fri = "Fri"
 
+# class TimeFrameBuilder():
+
+
 class TimeFrame():
     def __init__(self, ScheduleID: int, StartTime: datetime, EndTime: datetime, Weekday: Day):
         self.ScheduleID = ScheduleID

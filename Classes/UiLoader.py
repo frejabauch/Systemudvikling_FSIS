@@ -6,18 +6,19 @@ from PyQt6.QtWidgets import QCheckBox
 class EventCommunicator(QtCore.QObject):
     loginPressed = QtCore.pyqtSignal()
     loginSuccess = QtCore.pyqtSignal()
+    loginFailed = QtCore.pyqtSignal()
     frontPage = QtCore.pyqtSignal()
     proposed = QtCore.pyqtSignal()
 
 
-class UiWindowType(Enum):
-    login = "gui/login.ui"
-    success = "gui/success.ui"
-    frontpage = "gui/frontpage_back2.ui"
-    propose = "gui/proposeSchedule.ui"
+# class UiWindowType(Enum):
+#     login = "gui/login.ui"
+#     success = "gui/success.ui"
+#     frontpage = "gui/frontpage_back2.ui"
+#     propose = "gui/proposeSchedule.ui"
 
 
-class UiLoader(QtWidgets.QMainWindow):
+class UiLoader():
     def __init__(self, EventCommunicator):
         self.app = QtWidgets.QApplication(sys.argv)
         self.eventHandler = EventCommunicator
@@ -51,18 +52,14 @@ class loginUi(QtWidgets.QMainWindow):
         self.eventHandler = EventCommunicator
         self.label.setPixmap(QtGui.QPixmap("gui/ku_logo_uk_v.png"))
         #Knapper:
-        self.loginButton.clicked.connect(self.openWindow)
+        self.loginButton.clicked.connect(self.processLogin)
 
     def saveUser(self):
         self.userID = self.username.text()
 
-    def openWindow(self):
+    def processLogin(self):
         self.saveUser()
-        # self.ui = frontpage_backUi()
-        # self.ui.show()
         self.eventHandler.loginPressed.emit()
-        # self.StateCom.loginSuccess.emit()
-        self.close()
 
 class frontpage_backUi(QtWidgets.QMainWindow):
     def __init__(self, EventCommunicator):
@@ -124,8 +121,9 @@ class proposeScheduleUi(QtWidgets.QMainWindow):
     def openPopup(self):
         # self.ui = successUi()
         # self.ui.show()
-        self.eventHandler.proposed.emit()
         self.timeList()
+        self.eventHandler.proposed.emit()
+
     
     def setName(self, name):
         self.userName.setText(name)

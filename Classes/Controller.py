@@ -12,7 +12,6 @@ from PyQt6.QtWidgets import QCheckBox
 
 class Controller():
 
-
     def __init__(self, view: UiLoader):
         self.view = view
         self.eventHandler = view.eventHandler
@@ -20,14 +19,16 @@ class Controller():
         self.dbConnector.connectToDatabase()
         self.setupEventConnections()
         self.view.loadUi()
-        
 
     def setupEventConnections(self):
         # self.eventHandler.loginPressed.connect(self.setUiTeacher("Mette", "Jensen"))
         print(callable(self.loadTeacher))
         self.eventHandler.loginPressed.connect(self.loadTeacher)
         self.eventHandler.loginSuccess.connect(self.setUiTeacher)
+        self.eventHandler.loginSuccess.connect(self.view.loginWindow.close)
         self.eventHandler.loginSuccess.connect(self.view.frontPageWindow.show)
+        self.eventHandler.proposed.connect(self.loadProposedSchedule)
+        # self.eventHandler.loginFailed.connect(self.view.)
 
     def setUiTeacher(self):
         self.view.displayTeacher(self.teacher.FirstName + " " + self.teacher.LastName)
@@ -35,12 +36,18 @@ class Controller():
     def loadTeacher(self):
         self.inputID = self.view.loginWindow.userID
         self.teacher = self.dbConnector.loadTeacherFromDatabase(self.inputID)
-        self.eventHandler.loginSuccess.emit()
-
-    
-    # notAvailableDates = self.view.proposeWindow.dateList
-    # proposedTimeList = self.view.proposeWindow.proposedTimeList
-    # print(notAvailableDates, proposedTimeList)
+        if self.teacher is not None:
+            self.eventHandler.loginSuccess.emit()
+        
+        # Implementer evt fejlmeddelelse?
+        # else: 
+        #     print("Failed to load Teacher")
+        #     self.eventHandler.loginFailed.emit()
+        
+    def loadProposedSchedule(self):
+        self.notAvailableDates = self.view.proposeWindow.dateList
+        self.proposedTimeList = self.view.proposeWindow.proposedTimeList
+        print(self.notAvailableDates, self.proposedTimeList)
 
 e = EventCommunicator()
 v = UiLoader(e)

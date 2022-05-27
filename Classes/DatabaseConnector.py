@@ -37,9 +37,11 @@ class DatabaseConnector:
         databaseCursor = self.databaseConnection.cursor()
         query = f"SELECT FirstName, LastName, PhoneNumber, Mail FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID WHERE TeacherID='{TeacherID}'"
         databaseCursor.execute(query)
-        result = databaseCursor.fetchall()
+        result = databaseCursor.fetchone()
+        print(result)
         databaseCursor.close()
-        return Teacher(*result[0])
+        if result is not None:
+            return Teacher(*result)
 
     def saveTimeFrameToDatabase(self, inputTimeFrame: TimeFrame):
         databaseCursor = self.databaseConnection.cursor()
