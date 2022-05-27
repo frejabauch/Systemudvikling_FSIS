@@ -55,6 +55,6 @@ CREATE TABLE TimeFrame (
 	ScheduleID int,
     StartTime time,
     EndTime time,
-    Weekday enum('Man', 'Tirs', 'Ons', 'Tors', 'Fre') not null,
+    Weekday enum('Mon', 'Tue', 'Wed', 'Thu', 'Fri') not null,
     FOREIGN KEY (ScheduleID) references Schedule(ScheduleID)
 );

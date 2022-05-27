@@ -1,3 +1,4 @@
+import os
 from sqlite3 import Time
 import mysql.connector
 from mysql.connector import errorcode
@@ -16,7 +17,9 @@ class DatabaseConnector:
                 print("Input database name")
                 databaseName = input("Database: ")
                 print("Input password")
-                password = getpass.getpass()
+                # os.system("stty -echo")
+                password = input("Password: ")
+                # os.system("stty echo")
                 
                 self.databaseConnection = mysql.connector.connect(user="root", password=f"{password}", host="127.0.0.1", database=f'{databaseName}')
                 self.databaseIsConnected = True
