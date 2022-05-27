@@ -186,15 +186,6 @@
          </color>
         </brush>
        </colorrole>
-       <colorrole role="LinkVisited">
-        <brush brushstyle="SolidPattern">
-         <color alpha="255">
-          <red>255</red>
-          <green>0</green>
-          <blue>255</blue>
-         </color>
-        </brush>
-       </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -219,15 +210,6 @@
           <red>255</red>
           <green>255</green>
           <blue>220</blue>
-         </color>
-        </brush>
-       </colorrole>
-       <colorrole role="ToolTipText">
-        <brush brushstyle="SolidPattern">
-         <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -317,9 +299,9 @@
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -377,15 +359,6 @@
          </color>
         </brush>
        </colorrole>
-       <colorrole role="LinkVisited">
-        <brush brushstyle="SolidPattern">
-         <color alpha="255">
-          <red>255</red>
-          <green>0</green>
-          <blue>255</blue>
-         </color>
-        </brush>
-       </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -410,15 +383,6 @@
           <red>255</red>
           <green>255</green>
           <blue>220</blue>
-         </color>
-        </brush>
-       </colorrole>
-       <colorrole role="ToolTipText">
-        <brush brushstyle="SolidPattern">
-         <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -568,15 +532,6 @@
          </color>
         </brush>
        </colorrole>
-       <colorrole role="LinkVisited">
-        <brush brushstyle="SolidPattern">
-         <color alpha="255">
-          <red>255</red>
-          <green>0</green>
-          <blue>255</blue>
-         </color>
-        </brush>
-       </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -601,15 +556,6 @@
           <red>255</red>
           <green>255</green>
           <blue>220</blue>
-         </color>
-        </brush>
-       </colorrole>
-       <colorrole role="ToolTipText">
-        <brush brushstyle="SolidPattern">
-         <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -997,7 +943,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">text-color:blue</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Forgot password or username?</string>
@@ -1013,7 +959,7 @@
      <x>0</x>
      <y>0</y>
      <width>754</width>
-     <height>22</height>
+     <height>37</height>
     </rect>
    </property>
   </widget>

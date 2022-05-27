@@ -14,7 +14,7 @@
    <string>Uniflow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="userName">
     <property name="geometry">
      <rect>
       <x>320</x>

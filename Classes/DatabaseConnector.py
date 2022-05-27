@@ -1,3 +1,4 @@
+import os
 from sqlite3 import Time
 import mysql.connector
 from mysql.connector import errorcode
@@ -16,7 +17,9 @@ class DatabaseConnector:
                 print("Input database name")
                 databaseName = input("Database: ")
                 print("Input password")
-                password = getpass.getpass()
+                # os.system("stty -echo")
+                password = input("Password: ")
+                # os.system("stty echo")
                 
                 self.databaseConnection = mysql.connector.connect(user="root", password=f"{password}", host="127.0.0.1", database=f'{databaseName}')
                 self.databaseIsConnected = True
@@ -34,9 +37,11 @@ class DatabaseConnector:
         databaseCursor = self.databaseConnection.cursor()
         query = f"SELECT FirstName, LastName, PhoneNumber, Mail FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID WHERE TeacherID='{TeacherID}'"
         databaseCursor.execute(query)
-        result = databaseCursor.fetchall()
+        result = databaseCursor.fetchone()
+        print(result)
         databaseCursor.close()
-        return Teacher(*result[0])
+        if result is not None:
+            return Teacher(*result)
 
     def saveTimeFrameToDatabase(self, inputTimeFrame: TimeFrame):
         databaseCursor = self.databaseConnection.cursor()
