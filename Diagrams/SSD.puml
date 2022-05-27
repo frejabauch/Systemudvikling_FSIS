@@ -57,9 +57,10 @@ Uniflow <-- Database: Schedule saved
 Teacher <-- Uniflow: Schedule saved
 else Connection failed
 Uniflow <-- Database: Schedule not saved
+deactivate Database
 Teacher <- Uniflow: Connection to database failed
 end
-deactivate Database
+
 
 Uniflow -> CourseSecretary: Send Proposed Schedule
 Uniflow --> Teacher : Notification: Schedule has been send
