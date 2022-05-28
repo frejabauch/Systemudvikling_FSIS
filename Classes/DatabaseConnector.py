@@ -4,7 +4,7 @@ import mysql.connector
 from mysql.connector import errorcode
 import getpass
 from Schedule import Schedule
-from TimeFrame import TimeFrame
+from TimeFrame import TimeFrame, TimeFrameBuilder
 from Teacher import Teacher
 
 class DatabaseConnector:
@@ -45,7 +45,7 @@ class DatabaseConnector:
 
     def saveTimeFrameToDatabase(self, inputTimeFrame: TimeFrame):
         databaseCursor = self.databaseConnection.cursor()
-        query = f"INSERT INTO TimeFrame(ScheduleID, StartTime, EndTime, Weekday) VALUES ({inputTimeFrame.ScheduleID}, '{inputTimeFrame.StartTime}', '{inputTimeFrame.EndTime}', '{inputTimeFrame.Weekday.value}');"
+        query = f"INSERT INTO TimeFrame(ScheduleID, StartTime, EndTime, Weekday) VALUES ({inputTimeFrame.TimeFrameID}, '{inputTimeFrame.StartTime}', '{inputTimeFrame.EndTime}', '{inputTimeFrame.Weekday.value}');"
         # query = "INSERT INTO new_Iter3.TimeFrame(ScheduleID, StartTime, EndTime, Weekday) VALUES(1, '9:00', '12:00', 'Man');"
         databaseCursor.execute(query)
         self.databaseConnection.commit()

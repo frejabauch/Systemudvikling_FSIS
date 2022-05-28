@@ -1,13 +1,11 @@
 import time
 from Teacher import Teacher
 from Schedule import Schedule, ScheduleStatus
-from TimeFrame import TimeFrame, Day
+from TimeFrame import TimeFrameBuilder
 from DatabaseConnector import DatabaseConnector
 import datetime
 from UiLoader import UiLoader, EventCommunicator
-from proposeSchedule import Ui_MainWindow
-from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QCheckBox
+
 
 
 class Controller():
@@ -47,7 +45,11 @@ class Controller():
     def loadProposedSchedule(self):
         self.notAvailableDates = self.view.proposeWindow.dateList
         self.proposedTimeList = self.view.proposeWindow.proposedTimeList
-        print(self.notAvailableDates, self.proposedTimeList)
+        builder = TimeFrameBuilder(self.proposedTimeList, 123)
+        timeFrameList = builder.createTimeFrame()
+        for i in timeFrameList:
+            print(i.TimeFrameID, i.StartTime, i.EndTime, i.Weekday)
+        # print(self.notAvailableDates, timeFrameList)
 
 e = EventCommunicator()
 v = UiLoader(e)
