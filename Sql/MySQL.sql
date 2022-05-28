@@ -56,11 +56,12 @@ CREATE TABLE IF NOT EXISTS `Admin`(
 
 CREATE TABLE IF NOT EXISTS `TimeFrame`(
   `TimeFrameID` int NOT NULL AUTO_INCREMENT,
-  `StartTime` datetime DEFAULT NULL,
-  `EndTime` datetime DEFAULT NULL,
+  `StartTime` time DEFAULT NULL,
+  `EndTime` time DEFAULT NULL,
+  `Weekday`enum('Mon', 'Tue', 'Wed', 'Thu', 'Fri') not null,
   `ClassType` enum('Lecture','class','meeting') DEFAULT NULL,
   `RoomID` VARCHAR(255),
-  PRIMARY KEY (`TimeFrameID`),
+  KEY (`TimeFrameID`),
   FOREIGN KEY (`RoomID`) REFERENCES `Location`(`RoomID`)
 );
 

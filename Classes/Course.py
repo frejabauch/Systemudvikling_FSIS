@@ -1,8 +1,7 @@
 class Course():
-    def __init__(self, Schedule, ECTS, CourseID, StudentList, Teacher, Location):
-        self.Schedule = Schedule
-        self.ECTS = ECTS
+    def __init__(self, CourseID, ECTS, TimeFrameID, TeacherID, Faculty):
         self.CourseID = CourseID
-        self.StudentList = StudentList
-        self.Teacher = Teacher
-        self.Location = Location
+        self.ECTS = ECTS
+        self.TimeFrameID = TimeFrameID
+        self.TeacherID = TeacherID
+        self.Faculty = Faculty
