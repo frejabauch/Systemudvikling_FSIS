@@ -17,10 +17,8 @@ class DatabaseConnector:
                 print("Input database name")
                 databaseName = input("Database: ")
                 print("Input password")
-                # os.system("stty -echo")
                 password = input("Password: ")
-                # os.system("stty echo")
-                
+
                 self.databaseConnection = mysql.connector.connect(user="root", password=f"{password}", host="127.0.0.1", database=f'{databaseName}')
                 self.databaseIsConnected = True
                 print(f"Connected to database {databaseName}")
