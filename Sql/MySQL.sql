@@ -1,14 +1,15 @@
 SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE Location;
-DROP TABLE Course;
-DROP TABLE Class;
-DROP TABLE Schedule;
-DROP TABLE User;
-DROP TABLE Student;
-DROP TABLE Admin;
-DROP TABLE Teacher;
-DROP TABLE CourseSecretary;
-DROP TABLE Education;
+DROP TABLE IF EXISTS Location;
+#DROP TABLE IF EXISTS Course;
+DROP TABLE IF EXISTS Class;
+DROP TABLE IF EXISTS Schedule;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Student;
+DROP TABLE IF EXISTS Admin;
+DROP TABLE IF EXISTS Teacher;
+DROP TABLE IF EXISTS CourseSecretary;
+DROP TABLE IF EXISTS Education;
+DROP TABLE IF EXISTS TimeFrame;
 SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE IF NOT EXISTS `Education` (
@@ -71,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `Course`(
   `Faculty` enum('SUND', 'HUM', 'JURA', 'Science', 'SAMF', 'TEOL', 'DTU'),
   PRIMARY KEY (`CourseID`),
   FOREIGN KEY (`TeacherID`) REFERENCES `Teacher`(`TeacherID`),
-  FOREIGN KEY (`TimeFrameID`) REFERENCES `Class`(`TimeFrameID`)
+  FOREIGN KEY (`TimeFrameID`) REFERENCES `TimeFrame`(`TimeFrameID`)
 );
 
 CREATE TABLE IF NOT EXISTS `Schedule`(
@@ -101,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `Student`(
 
 SELECT * FROM Location;
 SELECT * FROM Course;
-SELECT * FROM Class;
+SELECT * FROM TimeFrame;
 SELECT * FROM Schedule;
 SELECT * FROM User;
 SELECT * FROM Student;
