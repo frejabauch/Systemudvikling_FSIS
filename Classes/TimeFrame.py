@@ -17,16 +17,17 @@ class Day(Enum):
 # class TimeFrameBuilder():
 
 class TimeFrame():
-    def __init__(self, ScheduleID: int, StartTime: datetime, EndTime: datetime, Weekday: Day, ClassLocation: Location, ClassType: TimeFrameType):
-        self.ScheduleID = ScheduleID
+    def __init__(self, TimeFrameID: int, StartTime: datetime, EndTime: datetime, Weekday: Day):
+        self.TimeFrameID = TimeFrameID
         self.StartTime = StartTime
         self.EndTime = EndTime
         self.Weekday = Weekday
-        self.ClassLocation = ClassLocation
-        self.ClassType = ClassType
     
-    def updateTimeFrame():
-        pass
+    def fillTimeFrame(self, Location: Location, Type: TimeFrameType, RoomID):
+        self.Location = Location
+        self.Type = Type
+        self.RoomID = RoomID
+
 
     def deleteTimeFrame():
         pass
