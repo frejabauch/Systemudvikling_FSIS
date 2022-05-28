@@ -53,25 +53,25 @@ CREATE TABLE IF NOT EXISTS `Admin`(
     FOREIGN KEY (`AdminID`) REFERENCES `User`(`UserID`)
 );
 
-CREATE TABLE IF NOT EXISTS `Class`(
-  `ClassID` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `TimeFrame`(
+  `TimeFrameID` int NOT NULL AUTO_INCREMENT,
   `StartTime` datetime DEFAULT NULL,
   `EndTime` datetime DEFAULT NULL,
   `ClassType` enum('Lecture','class','meeting') DEFAULT NULL,
-  `RoomID` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`ClassID`),
+  `RoomID` VARCHAR(255),
+  PRIMARY KEY (`TimeFrameID`),
   FOREIGN KEY (`RoomID`) REFERENCES `Location`(`RoomID`)
 );
 
 CREATE TABLE IF NOT EXISTS `Course`(
   `CourseID` VARCHAR(255),
   `ECTS` float DEFAULT NULL,
-  `ClassID` int NOT NULL,
+  `TimeFrameID` int NOT NULL,
   `TeacherID` varchar(6) DEFAULT NULL,
   `Faculty` enum('SUND', 'HUM', 'JURA', 'Science', 'SAMF', 'TEOL', 'DTU'),
   PRIMARY KEY (`CourseID`),
   FOREIGN KEY (`TeacherID`) REFERENCES `Teacher`(`TeacherID`),
-  FOREIGN KEY (`ClassID`) REFERENCES `Class`(`ClassID`)
+  FOREIGN KEY (`TimeFrameID`) REFERENCES `Class`(`TimeFrameID`)
 );
 
 CREATE TABLE IF NOT EXISTS `Schedule`(
