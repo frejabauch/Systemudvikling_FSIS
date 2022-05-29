@@ -11,8 +11,10 @@ class Schedule{
     StartDate : datetime
     EndDate : datetime
     ScheduleStatus : ScheduleStatus
-    AdminID : Int
+    CourseID : String
+    AdminID : String
     EducationID : Int
+    CSID : String
     ProposeSchedule()
     CreateSchedule()
     UpdateSchedule()
@@ -27,23 +29,26 @@ class Location{
 }
 
 class Course{
-    ECTS : Float
     CourseID : CourseID
+    ECTS : Float
+    TimeFrameID : Int
+    TeacherID : String
     Teacher : Teacher
+    Faculty : Faculty
     Location : Location
     Schedule : Schedule
 }
 
-class Class{
-    StartTime : datetime
-    EndTime : datetime
-    ClassLocation : Location
-    ClassType : ClassType
-    Teachers : Teacher[]
-    EnrolledStudents : Student[]
-    setLocation()
-    setClassType()
-}
+' class Class{
+'     StartTime : datetime
+'     EndTime : datetime
+'     ClassLocation : Location
+'     ClassType : ClassType
+'     Teachers : Teacher[]
+'     EnrolledStudents : Student[]
+'     setLocation()
+'     setClassType()
+' }
 
 ' class Login{
 '     LoginType : LogType
@@ -66,8 +71,8 @@ class User{
 
 class Student{
     StudentID : String
-    Enrollment : Education
-    Semester : Int
+    Enrollment : Int
+    CourseID : String
     ViewSchedule()
 }
 
@@ -85,12 +90,15 @@ class Admin{
 }
 
 class TimeFrame{
-    ScheduleID : Int
+    TimeFrameID : Int
     StartTime : datetime
     EndTime : datetime
     Weekday : Day
-    UpdateTimeFrame()
-    DeleteTimeFrame()
+    Location : Location
+    Type : TimeFrameType
+    RoomID : String
+    fillTimeFrame()
+    deleteTimeFrame()
 }
 
 class CourseSecretary{
@@ -105,7 +113,7 @@ Course"1" o-- "1" Schedule : has a
 
 ' Education"1" *-- "4..6" Semester : contains
 
-Class "1" o-- "1..*"Location : has a
+TimeFrame "1" o-- "1..*"Location : has a
 
 User <|-- Student : inherits
 User <|-- Teacher : inherits
@@ -113,11 +121,11 @@ User <|-- Admin : inherits
 User <|-- CourseSecretary : inherits
 
 ' Semester"1" *-- "1..*" Course : contains
-Course"1" *-- "0..*" Class : contains
+' Course"1" *-- "0..*" Class : contains
 Course"1" *-- "0..*" TimeFrame : contains
-Teacher"1" --o "1" Course : teaches
-Student"1" o-- "1" Education : enrolled in
-Schedule o-- Education 
+Teacher"1" --o "1" Course : has a
+Student"1" o-- "1" Education : has a
+Schedule o-- Education : has a
 
 ' Login "1" -- "1" User : login
 
