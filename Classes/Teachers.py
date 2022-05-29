@@ -4,7 +4,7 @@ class Teachers:
     def __init__(self):
         self.teachers = []
 
-    def append_teachers(self, teacher:Teacher):
+    def append_teachers(self, teacher: Teacher):
         self.teachers.append(teacher)
 
     def get_teachers(self):
