@@ -5,10 +5,10 @@ from Elements import Elements
 
 class TeacherToXML:
     def __init__(self, teachers: Teachers):
-        self.teacher = teachers
+        self.teachers = teachers
 
     def write_file(self):
-        root = etree.Element("Teacher")
+        root = etree.Element("teach")
         for teacher in self.teachers.get_teachers():
             teacher_element = Elements.create_teacher(teacher)
             root.append(teacher_element)
