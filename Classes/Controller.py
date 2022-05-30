@@ -1,13 +1,16 @@
 import time
+
+from Classes.Teachers import Teachers
 from Teacher import Teacher
 from Schedule import Schedule, ScheduleStatus
 from TimeFrame import TimeFrame, Day
 from DatabaseConnector import DatabaseConnector
 import datetime
 from UiLoader import UiLoader, EventCommunicator
-from proposeSchedule import Ui_MainWindow
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QCheckBox
+from TeacherToXML import TeacherToXML
+from XMLToTeacher import XMLToTeacher
 
 
 class Controller():
@@ -17,8 +20,10 @@ class Controller():
         self.eventHandler = view.eventHandler
         self.dbConnector = DatabaseConnector()
         self.dbConnector.connectToDatabase()
+        self.loadAllTeachers()
         self.setupEventConnections()
         self.view.loadUi()
+
 
     def setupEventConnections(self):
         # self.eventHandler.loginPressed.connect(self.setUiTeacher("Mette", "Jensen"))
@@ -49,10 +54,34 @@ class Controller():
         self.proposedTimeList = self.view.proposeWindow.proposedTimeList
         print(self.notAvailableDates, self.proposedTimeList)
 
+    def loadAllTeachers(self):
+        databaseCursor = self.dbConnector.databaseConnection.cursor()
+        query = "SELECT * FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID"
+        databaseCursor.execute(query)
+        result = databaseCursor.fetchall()
+        print(result)
+
+        ts = Teachers()
+        for res in result:
+            raw_teacher = Teacher(res[1], res[2], res[4], res[3], res[0],)
+            ts.append_teachers(raw_teacher)
+        ttx = TeacherToXML(ts)
+        ttx.write_file()
+
+        teacherList = XMLToTeacher("Teachers.xml").parseXML()
+
+        teachers = teacherList.get_teachers()
+
+        for teacher in teachers:
+            print("-" * 30)
+            print()
+            print("Teacher: ", getattr(teacher, "FirstName"), getattr(teacher, "LastName"), getattr(teacher, "PhoneNumber"), getattr(teacher, "Mail"))
+
+
+
 e = EventCommunicator()
 v = UiLoader(e)
 c = Controller(v)
-
 
 # timeObject = datetime.datetime.now()
 

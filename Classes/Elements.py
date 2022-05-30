@@ -9,5 +9,5 @@ class Elements:
         teacher.LastName = getattr(teacher_obj, "LastName")
         teacher.PhoneNumber = getattr(teacher_obj, "PhoneNumber")
         teacher.Mail = getattr(teacher_obj, "Mail")
-        teacher.TeaherID = getattr(teacher_obj, "TeacherID")
+        teacher.TeacherID = getattr(teacher_obj, "TeacherID")
         return teacher
