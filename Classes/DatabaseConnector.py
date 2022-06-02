@@ -34,7 +34,7 @@ class DatabaseConnector:
 
     def loadTeacherFromDatabase(self, TeacherID: str) -> Teacher:
         databaseCursor = self.databaseConnection.cursor()
-        query = f"SELECT FirstName, LastName, PhoneNumber, Mail FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID WHERE TeacherID='{TeacherID}'"
+        query = f"SELECT FirstName, LastName, PhoneNumber, Mail, TeacherID FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID WHERE TeacherID='{TeacherID}'"
         databaseCursor.execute(query)
         result = databaseCursor.fetchone()
         print(result)

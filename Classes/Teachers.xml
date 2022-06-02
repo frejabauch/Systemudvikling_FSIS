@@ -1,17 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <teach>
   <teach>
-    <FirstName>Bente</FirstName>
-    <LastName>Bentsen</LastName>
+    <FirstName>Susanne</FirstName>
+    <LastName>Karlsen</LastName>
     <PhoneNumber>12345678</PhoneNumber>
-    <Mail>Bentsen@mail.dk</Mail>
-    <TeaherID>UCX533</TeaherID>
+    <Mail>SusanneKarlsen@hotmail.com</Mail>
+    <TeacherID>ABC123</TeacherID>
   </teach>
   <teach>
-    <FirstName>Jørgen</FirstName>
-    <LastName>Jørgensen</LastName>
-    <PhoneNumber>23456789</PhoneNumber>
-    <Mail>Jørgensen@mail.dk</Mail>
-    <TeaherID>UCX533</TeaherID>
+    <FirstName>Bent</FirstName>
+    <LastName>Bentsen</LastName>
+    <PhoneNumber>11223344</PhoneNumber>
+    <Mail>Bent_bentsen@gmail.com</Mail>
+    <TeacherID>ACD321</TeacherID>
+  </teach>
+  <teach>
+    <FirstName>Jan</FirstName>
+    <LastName>Johanson</LastName>
+    <PhoneNumber>22334455</PhoneNumber>
+    <Mail>JJ@hotmail.com</Mail>
+    <TeacherID>BDC987</TeacherID>
+  </teach>
+  <teach>
+    <FirstName>Peter</FirstName>
+    <LastName>Petersen</LastName>
+    <PhoneNumber>20201020</PhoneNumber>
+    <Mail>PP@gmail.com</Mail>
+    <TeacherID>JLM768</TeacherID>
   </teach>
 </teach>

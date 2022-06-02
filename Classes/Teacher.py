@@ -1,10 +1,11 @@
 from User import User
 
 class Teacher(User):
-    def __init__(self, FirstName, LastName, PhoneNumber, Mail):
+    def __init__(self, FirstName, LastName, PhoneNumber, Mail, TeacherID):
         User.__init__(self, FirstName, LastName, PhoneNumber, Mail)
         # self.CourseAffiliations = CourseAffiliations
-        self.TeacherID = self.UserID
+        self.TeacherID = TeacherID
+        #self.TeacherID = self.UserID
 
     def proposeSchedule(self, Schedule: list):
         mydict = {}

@@ -12,12 +12,10 @@ class XMLToTeacher:
 
         root = objectify.fromstring(xml)
 
-        atrributes = root.attrib
-
         teacherList = Teachers()
 
         for teacher in root.getchildren():
-            teacher_obj = Teacher(teacher.FirstName, teacher.LastName, teacher.PhoneNumber, teacher.Mail)
+            teacher_obj = Teacher(teacher.FirstName, teacher.LastName, teacher.PhoneNumber, teacher.Mail, teacher.TeacherID)
 
             teacherList.append_teachers(teacher_obj)
         return teacherList
