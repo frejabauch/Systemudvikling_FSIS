@@ -1,5 +1,7 @@
 import time
 
+import mysql
+
 from Classes.Teachers import Teachers
 from Teacher import Teacher
 from Schedule import Schedule, ScheduleStatus
@@ -56,14 +58,16 @@ class Controller():
 
     def loadAllTeachers(self):
         databaseCursor = self.dbConnector.databaseConnection.cursor()
+        db = mysql.connector.connect(host="127.0.0.1", user="root", password="FAKlbk55555", database="uniflow")
+        cursor = db.cursor()
         query = "SELECT * FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID"
         databaseCursor.execute(query)
         result = databaseCursor.fetchall()
-        print(result)
+        databaseCursor.close()
 
         ts = Teachers()
         for res in result:
-            raw_teacher = Teacher(res[1], res[2], res[4], res[3], res[0],)
+            raw_teacher = Teacher(res[1], res[2], res[4], res[3], res[0])
             ts.append_teachers(raw_teacher)
         ttx = TeacherToXML(ts)
         ttx.write_file()
@@ -71,14 +75,20 @@ class Controller():
         teacherList = XMLToTeacher("Teachers.xml").parseXML()
 
         teachers = teacherList.get_teachers()
+        #databaseCursor = self.dbConnector.databaseConnection.cursor()
+        query2 = 'INSERT into User (FirstName, LastName, Mail, PhoneNumber, UserID) VALUES (%s, %s, %s, %s, %s)'
+        val = ("Kurt", "Kurtsen", "KK@mail.dk", 59283746, "KLF897")
+        cursor.execute(query2, val)
+        db.commit()
+
+
 
         for teacher in teachers:
             print("-" * 30)
             print()
-            print("Teacher: ", getattr(teacher, "FirstName"), getattr(teacher, "LastName"), getattr(teacher, "PhoneNumber"), getattr(teacher, "Mail"))
+            print("Teacher: ", getattr(teacher, "TeacherID"), getattr(teacher, "FirstName"), getattr(teacher, "LastName"), getattr(teacher, "PhoneNumber"), getattr(teacher, "Mail"))
 
-
-
+        cursor.close()
 e = EventCommunicator()
 v = UiLoader(e)
 c = Controller(v)
