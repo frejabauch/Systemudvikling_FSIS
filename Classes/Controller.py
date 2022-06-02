@@ -1,18 +1,17 @@
 import time
-
 import mysql
-
-from Classes.Teachers import Teachers
+from Course import Course
 from Teacher import Teacher
 from Schedule import Schedule, ScheduleStatus
-from TimeFrame import TimeFrame, Day
+from TimeFrame import TimeFrameBuilder
 from DatabaseConnector import DatabaseConnector
-import datetime
+from datetime import datetime
 from UiLoader import UiLoader, EventCommunicator
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QCheckBox
 from TeacherToXML import TeacherToXML
 from XMLToTeacher import XMLToTeacher
+
 
 
 class Controller():
@@ -35,6 +34,7 @@ class Controller():
         self.eventHandler.loginSuccess.connect(self.view.loginWindow.close)
         self.eventHandler.loginSuccess.connect(self.view.frontPageWindow.show)
         self.eventHandler.proposed.connect(self.loadProposedSchedule)
+        self.eventHandler.proposed.connect(self.insertSchedule)
         # self.eventHandler.loginFailed.connect(self.view.)
 
     def setUiTeacher(self):
@@ -54,7 +54,22 @@ class Controller():
     def loadProposedSchedule(self):
         self.notAvailableDates = self.view.proposeWindow.dateList
         self.proposedTimeList = self.view.proposeWindow.proposedTimeList
-        print(self.notAvailableDates, self.proposedTimeList)
+        builder = TimeFrameBuilder(self.proposedTimeList, 123)
+        self.timeFrameList = builder.createTimeFrame()
+        # for i in timeFrameList:
+        #     print(i.TimeFrameID, i.StartTime, i.EndTime, i.Weekday)
+        # print(self.notAvailableDates, timeFrameList)
+
+    def insertSchedule(self):
+        semesterStart = datetime.strptime('01/02/22 07:00:00', '%d/%m/%y %H:%M:%S')
+        semesterEnd = datetime.strptime('28/06/22 18:00:00', '%d/%m/%y %H:%M:%S')
+        proposedSchedule = Schedule(1234, semesterStart, semesterEnd, ScheduleStatus.Proposed, "DummyCourse", "FGH345", 312, "BCD234")
+        dummyCourse = Course("DummyCourse", 7.5, 123, "ABC123", 'Science')
+        for timeFrame in self.timeFrameList:
+            self.dbConnector.saveTimeFrameToDatabase(timeFrame)
+        self.dbConnector.saveCourseToDatabase(dummyCourse)
+        self.dbConnector.saveScheduleToDatabase(proposedSchedule)
+
 
     def loadAllTeachers(self):
         databaseCursor = self.dbConnector.databaseConnection.cursor()

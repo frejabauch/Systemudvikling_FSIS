@@ -1,7 +1,6 @@
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS Location;
 DROP TABLE IF EXISTS Course;
-DROP TABLE IF EXISTS Class;
 DROP TABLE IF EXISTS Schedule;
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Student;
@@ -56,12 +55,12 @@ CREATE TABLE IF NOT EXISTS `Admin`(
 
 CREATE TABLE IF NOT EXISTS `TimeFrame`(
   `TimeFrameID` int NOT NULL AUTO_INCREMENT,
-  `StartTime` time DEFAULT NULL,
-  `EndTime` time DEFAULT NULL,
+  `StartTime` datetime DEFAULT NULL,
+  `EndTime` datetime DEFAULT NULL,
   `Weekday`enum('Mon', 'Tue', 'Wed', 'Thu', 'Fri') not null,
-  `ClassType` enum('Lecture','class','meeting') DEFAULT NULL,
+  `ClassType` enum('Lecture','Class','Meeting') DEFAULT NULL,
   `RoomID` VARCHAR(255),
-  KEY (`TimeFrameID`),
+  PRIMARY KEY (`TimeFrameID`),
   FOREIGN KEY (`RoomID`) REFERENCES `Location`(`RoomID`)
 );
 

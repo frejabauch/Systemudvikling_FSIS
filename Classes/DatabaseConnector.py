@@ -3,8 +3,9 @@ from sqlite3 import Time
 import mysql.connector
 from mysql.connector import errorcode
 import getpass
+from Course import Course
 from Schedule import Schedule
-from TimeFrame import TimeFrame
+from TimeFrame import TimeFrame, TimeFrameBuilder
 from Teacher import Teacher
 
 class DatabaseConnector:
@@ -43,7 +44,7 @@ class DatabaseConnector:
 
     def saveTimeFrameToDatabase(self, inputTimeFrame: TimeFrame):
         databaseCursor = self.databaseConnection.cursor()
-        query = f"INSERT INTO TimeFrame(ScheduleID, StartTime, EndTime, Weekday) VALUES ({inputTimeFrame.ScheduleID}, '{inputTimeFrame.StartTime}', '{inputTimeFrame.EndTime}', '{inputTimeFrame.Weekday.value}');"
+        query = f"INSERT INTO TimeFrame(TimeFrameID, StartTime, EndTime, Weekday) VALUES ({inputTimeFrame.TimeFrameID}, '{inputTimeFrame.StartTime}', '{inputTimeFrame.EndTime}', '{inputTimeFrame.Weekday.value}');"
         # query = "INSERT INTO new_Iter3.TimeFrame(ScheduleID, StartTime, EndTime, Weekday) VALUES(1, '9:00', '12:00', 'Man');"
         databaseCursor.execute(query)
         self.databaseConnection.commit()
@@ -53,10 +54,17 @@ class DatabaseConnector:
     def saveScheduleToDatabase(self, InputSchedule: Schedule):
         databaseCursor = self.databaseConnection.cursor()
         query = f"INSERT INTO Schedule(ScheduleID, StartDate, EndDate, ScheduleStatus, CourseID, AdminID, EducationID, CSID) VALUES ({InputSchedule.ScheduleID}, '{InputSchedule.StartDate}', '{InputSchedule.EndDate}', '{InputSchedule.ScheduleStatus.value}', '{InputSchedule.CourseID}', '{InputSchedule.AdminID}', {InputSchedule.EducationID}, '{InputSchedule.CSID}');"
-        print(query)
-        print("INSERT into Schedule(ScheduleID, StartDate, EndDate, ScheduleStatus, CourseID, AdminID, EducationID, CSID) Values (NULL, '2022-02-01', '2022-07-01', 'Confirmed', 'NDAB19000U', 'FGH345', 312, 'BCD234');")
+        # print(query)
+        # print("INSERT into Schedule(ScheduleID, StartDate, EndDate, ScheduleStatus, CourseID, AdminID, EducationID, CSID) Values (NULL, '2022-02-01', '2022-07-01', 'Confirmed', 'NDAB19000U', 'FGH345', 312, 'BCD234');")
         databaseCursor.execute(query)
         self.databaseConnection.commit()
         print(f"Schedule with ID {InputSchedule.ScheduleID} saved successfully.")
         databaseCursor.close()
+    
+    def saveCourseToDatabase(self, inputCourse: Course):
+        databaseCursor = self.databaseConnection.cursor()
+        query = f"INSERT INTO Course(CourseID, ECTS, TimeFrameID, TeacherID, Faculty) VALUES ('{inputCourse.CourseID}', '{inputCourse.ECTS}', {inputCourse.TimeFrameID}, '{inputCourse.TeacherID}', '{inputCourse.Faculty}')"
+        databaseCursor.execute(query)
+        self.databaseConnection.commit()
+
 
