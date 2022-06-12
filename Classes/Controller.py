@@ -1,5 +1,3 @@
-import time
-import mysql
 from Course import Course
 from Teacher import Teacher
 from Schedule import Schedule, ScheduleStatus

@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from datetime import datetime
 from enum import Enum
 from datetime import datetime
@@ -43,7 +42,7 @@ class TimeFrameBuilder():
 class TimeFrame():
     def __init__(self, StartTime: datetime, EndTime: datetime, Weekday: Day, CourseID: str):
         #TimeFrameID set by auto-increment in database
-        self.TimeFrameID = NULL
+        self.TimeFrameID
         self.StartTime = StartTime
         self.EndTime = EndTime
         self.Weekday = Weekday
