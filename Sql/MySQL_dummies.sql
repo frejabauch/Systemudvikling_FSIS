@@ -4,7 +4,8 @@ INSERT into Education(EducationID, Title, University) Values (311, 'Medicin og T
 INSERT into Education(EducationID, Title, University) Values (220, 'Religionsvidenskab', 'KU');
 SELECT * From Education;
 
-INSERT into User(FirstName, LastName, Mail, PhoneNumber, UserID) Values ('Susanne', 'Karlsen', 'SusanneKarlsen@hotmail.com', 12345678, 'ABC123');
+INSERT into User(FirstName, LastName, Mail, PhoneNumber, UserID) Values ('Mette', 'Jensen', 'mettejensen@sund.ku.dk', 91827364, 'ABC123');
+INSERT into User(FirstName, LastName, Mail, PhoneNumber, UserID) Values ('Susanne', 'Karlsen', 'SusanneKarlsen@hotmail.com', 12345678, 'MJE321');
 INSERT into User(FirstName, LastName, Mail, PhoneNumber, UserID) Values ('Anders', 'Andersen', 'Anderandersen@gmail.com', 91011121, 'GWT352');
 INSERT into User(FirstName, LastName, Mail, PhoneNumber, UserID) Values ('Julie', 'Jensen', 'JulieJensen@hotmail.com', 34567890, 'BCD234');
 INSERT into User(FirstName, LastName, Mail, PhoneNumber, UserID) Values ('Hans', 'Hansen', 'Hanshansen@gmail.com', 13245376, 'FGH345');
@@ -25,6 +26,7 @@ INSERT into Location(RoomID, Address, LocationType, Capacity) Values ('31.01', '
 INSERT into Location(RoomID, Address, LocationType, Capacity) Values ('A01', 'Universitetsparken 2', 'Lecture hall', 240);
 SELECT * FROM location;
 
+INSERT into Teacher(TeacherID) Values ('MJE321');
 INSERT into Teacher(TeacherID) Values ('ABC123');
 INSERT into Teacher(TeacherID) Values ('ACD321');
 INSERT into Teacher(TeacherID) Values ('BDC987');

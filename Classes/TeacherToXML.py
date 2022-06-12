@@ -9,7 +9,7 @@ class TeacherToXML:
 
     def write_file(self):
         root = etree.Element("teach")
-        for teacher in self.teachers.get_teachers():
+        for teacher in self.teachers:
             teacher_element = Elements.create_teacher(teacher)
             root.append(teacher_element)
 

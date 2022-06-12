@@ -1,8 +1,7 @@
-import os
-from sqlite3 import Time
 import mysql.connector
 from mysql.connector import errorcode
-import getpass
+# from TeacherToXML import TeacherToXML
+# from XMLToTeacher import XMLToTeacher
 from Course import Course
 from Schedule import Schedule
 from TimeFrame import TimeFrame, TimeFrameBuilder
@@ -44,8 +43,7 @@ class DatabaseConnector:
 
     def saveTimeFrameToDatabase(self, inputTimeFrame: TimeFrame):
         databaseCursor = self.databaseConnection.cursor()
-        query = f"INSERT INTO TimeFrame(TimeFrameID, StartTime, EndTime, Weekday) VALUES ({inputTimeFrame.TimeFrameID}, '{inputTimeFrame.StartTime}', '{inputTimeFrame.EndTime}', '{inputTimeFrame.Weekday.value}');"
-        # query = "INSERT INTO new_Iter3.TimeFrame(ScheduleID, StartTime, EndTime, Weekday) VALUES(1, '9:00', '12:00', 'Man');"
+        query = f"INSERT INTO TimeFrame(StartTime, EndTime, Weekday, CourseID) VALUES ('{inputTimeFrame.StartTime}', '{inputTimeFrame.EndTime}', '{inputTimeFrame.Weekday.value}', '{inputTimeFrame.CourseID}');"
         databaseCursor.execute(query)
         self.databaseConnection.commit()
         print("TimeFrame saved successfully.")
@@ -53,9 +51,7 @@ class DatabaseConnector:
     
     def saveScheduleToDatabase(self, InputSchedule: Schedule):
         databaseCursor = self.databaseConnection.cursor()
-        query = f"INSERT INTO Schedule(ScheduleID, StartDate, EndDate, ScheduleStatus, CourseID, AdminID, EducationID, CSID) VALUES ({InputSchedule.ScheduleID}, '{InputSchedule.StartDate}', '{InputSchedule.EndDate}', '{InputSchedule.ScheduleStatus.value}', '{InputSchedule.CourseID}', '{InputSchedule.AdminID}', {InputSchedule.EducationID}, '{InputSchedule.CSID}');"
-        # print(query)
-        # print("INSERT into Schedule(ScheduleID, StartDate, EndDate, ScheduleStatus, CourseID, AdminID, EducationID, CSID) Values (NULL, '2022-02-01', '2022-07-01', 'Confirmed', 'NDAB19000U', 'FGH345', 312, 'BCD234');")
+        query = f"INSERT INTO Schedule(ScheduleID, StartDate, EndDate, ScheduleStatus, AdminID, EducationID, CSID) VALUES ({InputSchedule.ScheduleID}, '{InputSchedule.StartDate}', '{InputSchedule.EndDate}', '{InputSchedule.ScheduleStatus.value}', '{InputSchedule.AdminID}', {InputSchedule.EducationID}, '{InputSchedule.CSID}');"
         databaseCursor.execute(query)
         self.databaseConnection.commit()
         print(f"Schedule with ID {InputSchedule.ScheduleID} saved successfully.")
@@ -63,8 +59,41 @@ class DatabaseConnector:
     
     def saveCourseToDatabase(self, inputCourse: Course):
         databaseCursor = self.databaseConnection.cursor()
-        query = f"INSERT INTO Course(CourseID, ECTS, TimeFrameID, TeacherID, Faculty) VALUES ('{inputCourse.CourseID}', '{inputCourse.ECTS}', {inputCourse.TimeFrameID}, '{inputCourse.TeacherID}', '{inputCourse.Faculty}')"
+        query = f"INSERT INTO Course(CourseID, ECTS, TeacherID, Faculty, ScheduleID) VALUES ('{inputCourse.CourseID}', '{inputCourse.ECTS}', '{inputCourse.TeacherID}', '{inputCourse.Faculty}', {inputCourse.ScheduleID})"
         databaseCursor.execute(query)
         self.databaseConnection.commit()
+
+    def loadAllTeachers(self):
+        databaseCursor = self.databaseConnection.cursor()
+        query = "SELECT * FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID"
+        databaseCursor.execute(query)
+        result = databaseCursor.fetchall()
+        # databaseCursor.close()
+
+        teacherObjects = [Teacher(res) for res in result]
+        # ts = []
+        # for res in result:
+        #     raw_teacher = Teacher(*res)
+        #     ts.append_teachers(raw_teacher)
+        ttx = TeacherToXML(teacherObjects)
+        ttx.write_file()
+
+        teacherList = XMLToTeacher("Teachers.xml").parseXML()
+
+        teachers = teacherList.get_teachers()
+        #databaseCursor = self.dbConnector.databaseConnection.cursor()
+        query2 = 'INSERT into User (FirstName, LastName, Mail, PhoneNumber, UserID) VALUES (%s, %s, %s, %s, %s)'
+        val = ("Kurt", "Kurtsen", "KK@mail.dk", 59283746, "KLF897")
+        databaseCursor.execute(query2, val)
+        self.databaseConnection.commit()
+
+
+
+        for teacher in teachers:
+            print("-" * 30)
+            print()
+            print("Teacher: ", getattr(teacher, "TeacherID"), getattr(teacher, "FirstName"), getattr(teacher, "LastName"), getattr(teacher, "PhoneNumber"), getattr(teacher, "Mail"))
+
+        databaseCursor.close()
 
 

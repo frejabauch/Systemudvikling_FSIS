@@ -15,9 +15,7 @@ class Schedule{
     AdminID : String
     EducationID : Int
     CSID : String
-    ProposeSchedule()
-    CreateSchedule()
-    UpdateSchedule()
+
     ViewSchedule()
 }
 
@@ -35,26 +33,9 @@ class Course{
     TeacherID : String
     Teacher : Teacher
     Faculty : Faculty
-    Location : Location
     Schedule : Schedule
 }
 
-' class Class{
-'     StartTime : datetime
-'     EndTime : datetime
-'     ClassLocation : Location
-'     ClassType : ClassType
-'     Teachers : Teacher[]
-'     EnrolledStudents : Student[]
-'     setLocation()
-'     setClassType()
-' }
-
-' class Login{
-'     LoginType : LogType
-'     UserType : UType
-'     authenticate()
-' }
 
 class User{
     FirstName : String
@@ -81,12 +62,16 @@ class Teacher{
     SaveProposedSchedule()
     SendProposedSchedule()
     CreateSchedule()
+    ProposeSchedule()
     ViewSchedule()
+    EditSchedule()
 }
 
 class Admin{
     AdminID : String
-    InputInfo()
+    CreateSchedule()
+    ViewSchedule()
+    EditSchedule()
 }
 
 class TimeFrame{
@@ -104,10 +89,12 @@ class TimeFrame{
 class CourseSecretary{
     CSID : String
     CreateSchedule()
+    ViewSchedule()
+    EditSchedule()
 }
 
 ' User"1" o-- "1" Schedule : has a
-Course"1" o-- "1" Schedule : has a
+Course"1..*" --o "1" Schedule : has a
 ' Student"1" o-- "1" Schedule : has a
 ' Teacher"1" o-- "1" Schedule : has a
 
@@ -115,17 +102,19 @@ Course"1" o-- "1" Schedule : has a
 
 TimeFrame "1" o-- "1..*"Location : has a
 
-User <|-- Student : inherits
-User <|-- Teacher : inherits
-User <|-- Admin : inherits
-User <|-- CourseSecretary : inherits
+User"1" <|-- "1"Student : inherits
+User"1" <|-- "1"Teacher : inherits
+User"1" <|-- "1"Admin : inherits
+User"1" <|-- "1"CourseSecretary : inherits
 
 ' Semester"1" *-- "1..*" Course : contains
 ' Course"1" *-- "0..*" Class : contains
 Course"1" *-- "0..*" TimeFrame : contains
-Teacher"1" --o "1" Course : has a
+Teacher"1" --o "0..*" Course : has a
 Student"1" o-- "1" Education : has a
-Schedule o-- Education : has a
+Schedule"1" o-- "1"Education : has a
+Schedule"0..*" -- Admin
+Schedule"0..*" -- CourseSecretary
 
 ' Login "1" -- "1" User : login
 

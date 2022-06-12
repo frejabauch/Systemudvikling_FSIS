@@ -80,8 +80,8 @@ CREATE TABLE IF NOT EXISTS `Course`(
 
 CREATE TABLE IF NOT EXISTS `TimeFrame`(
   `TimeFrameID` int NOT NULL AUTO_INCREMENT,
-  `StartTime` datetime DEFAULT NULL,
-  `EndTime` datetime DEFAULT NULL,
+  `StartTime` time DEFAULT NULL,
+  `EndTime` time DEFAULT NULL,
   `Weekday`enum('Mon', 'Tue', 'Wed', 'Thu', 'Fri') not null,
   `ClassType` enum('Lecture','Class','Meeting') DEFAULT NULL,
   `RoomID` VARCHAR(255),
