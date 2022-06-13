@@ -27,11 +27,11 @@ class Location{
 class Course{
     CourseID : CourseID
     ECTS : Float
-    TimeFrameID : Int
     TeacherID : String
     Teacher : Teacher
     Faculty : Faculty
     ScheduleID : Int
+    TimeFrames : TimeFrame[]
 }
 
 
@@ -51,18 +51,17 @@ class User{
 class Student{
     StudentID : String
     Enrollment : Int
-    CourseID : String
     ViewSchedule()
 }
 
 class Teacher{
     TeacherID : String
-    SaveProposedSchedule()
-    SendProposedSchedule()
-    CreateSchedule()
-    ' ProposeSchedule()
-    ViewSchedule()
-    EditSchedule()
+    ' SaveProposedSchedule()
+    ' SendProposedSchedule()
+    ' CreateSchedule()
+    ProposeSchedule()
+    ' ViewSchedule()
+    ' EditSchedule()
 }
 
 class Admin{
@@ -78,10 +77,11 @@ class TimeFrame{
     EndTime : datetime
     Weekday : Day
     Location : Location
-    Type : TimeFrameType
+    ClassType : ClassType
     RoomID : String
     fillTimeFrame()
-    deleteTimeFrame()
+    setLocation()
+    updateID()
 }
 
 class CourseSecretary{
@@ -98,7 +98,7 @@ Course"1..*" --o "1" Schedule : has a
 
 ' Education"1" *-- "4..6" Semester : contains
 
-TimeFrame "1" o-- "1..*"Location : has a
+TimeFrame "1" o-- "0..*"Location : has a
 
 User"1" <|-- "1"Student : inherits
 User"1" <|-- "1"Teacher : inherits
@@ -107,12 +107,12 @@ User"1" <|-- "1"CourseSecretary : inherits
 
 ' Semester"1" *-- "1..*" Course : contains
 ' Course"1" *-- "0..*" Class : contains
-Course"1" *-- "0..*" TimeFrame : contains
+Course"1" o-- "0..*" TimeFrame : has a
 Teacher"1" --o "0..*" Course : has a
-Student"1" o-- "1" Education : has a
+Student"0..*" o-- "1" Education : has a
 Schedule"1" o-- "1"Education : has a
-Schedule"0..*" -- Admin
-Schedule"0..*" -- CourseSecretary
+Schedule"0..*" <-- "1"Admin
+Schedule"0..*" <-- "1"CourseSecretary
 
 ' Login "1" -- "1" User : login
 

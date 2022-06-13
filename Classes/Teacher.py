@@ -11,7 +11,6 @@ class Teacher(User):
     def setupEventHandler(self, eventHandler):
         self.eventHandler = eventHandler
 
-
     def proposeSchedule(self):
         self.eventHandler.proposed.emit()
         

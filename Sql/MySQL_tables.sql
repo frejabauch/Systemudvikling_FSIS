@@ -96,7 +96,6 @@ CREATE TABLE IF NOT EXISTS `TimeFrame`(
 CREATE TABLE IF NOT EXISTS `Student`(
 	`StudentID` VARCHAR(6),
     `Enrollment` int NOT NULL,
-    `CourseID` VARCHAR(255),
     PRIMARY KEY (`StudentID`),
     FOREIGN KEY (`StudentID`) REFERENCES `User`(`UserID`),
     FOREIGN KEY (`Enrollment`) REFERENCES `Education`(`EducationID`)

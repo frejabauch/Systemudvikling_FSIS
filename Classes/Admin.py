@@ -5,5 +5,12 @@ class Admin(User):
     def __init__(self, FirstName, LastName, PhoneNumber, Mail):
         User.__init__(self, FirstName, LastName, PhoneNumber, Mail)
         self.AdminID = self.UserID
-    def inputInfo(Course):
-        Course.Schedule.inputInfo()
+    
+    def CreateSchedule():
+        pass
+
+    def ViewSchedule():
+        pass
+
+    def EditSchedule():
+        pass

@@ -11,7 +11,7 @@ class ScheduleStatus(Enum):
 
 class Schedule():
     def __init__(self, StartDate: datetime, EndDate: datetime, ScheduleStatus: ScheduleStatus, AdminID: str, EducationID: int, CSID: str):
-        #ScheduleID assigned my auto increment in database
+        #ScheduleID assigned by auto increment in database
         #self.ScheduleID = ScheduleID
         self.StartDate = StartDate
         self.EndDate = EndDate
