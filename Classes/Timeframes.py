@@ -7,5 +7,5 @@ class TimeFrames:
     def append_timeframes(self, timeframe: TimeFrame):
         self.timeframes.append(timeframe)
 
-    def get_teacher(self):
+    def get_timeframes(self):
         return self.timeframes

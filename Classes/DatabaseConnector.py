@@ -3,6 +3,7 @@ from mysql.connector import errorcode
 from TeacherToXML import TeacherToXML
 from TimeFrameToXML import TimeFrameToXML
 from XMLToTeacher import XMLToTeacher
+from XMLToTimeFrame import XMLToTimeFrame
 from Course import Course
 from Schedule import Schedule
 from TimeFrame import TimeFrame
@@ -76,10 +77,10 @@ class DatabaseConnector:
 
         teachers = teacherList.get_teachers()
         #databaseCursor = self.dbConnector.databaseConnection.cursor()
-        query2 = 'INSERT into User (FirstName, LastName, Mail, PhoneNumber, UserID) VALUES (%s, %s, %s, %s, %s)'
-        val = ("Kurt", "Kurtsen", "KK@mail.dk", 59283746, "KLF897")
-        databaseCursor.execute(query2, val)
-        self.databaseConnection.commit()
+        #query2 = 'INSERT into User (FirstName, LastName, Mail, PhoneNumber, UserID) VALUES (%s, %s, %s, %s, %s)'
+        #val = ("Kurt", "Kurtsen", "KK@mail.dk", 59283746, "KLF897")
+        #databaseCursor.execute(query2, val)
+        #self.databaseConnection.commit()
 
 
 
@@ -103,5 +104,16 @@ class DatabaseConnector:
             (timeframeObjects[i].updateID(result[i][0]))
         tftx = TimeFrameToXML(timeframeObjects)
         tftx.write_file()
-        #timeframeList = XMLToTimeFrame("Timeframe.xml").parseXML()
+
+        timeframeList = XMLToTimeFrame("Timeframe.xml").parseXML()
+        timeframes = timeframeList.get_timeframes()
+
+        #self.databaseConnection.commit()
+
+        for timeframe in timeframes:
+            print("-" * 30)
+            print()
+            print("Teacher: ", getattr(timeframe, "StartTime"), getattr(timeframe, "EndTime"), getattr(timeframe, "Weekday"), getattr(timeframe, "CourseID"))
+
+
         databaseCursor.close()
