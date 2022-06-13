@@ -33,6 +33,7 @@ class Controller():
     def loadTeacher(self):
         self.inputID = self.view.loginWindow.userID
         self.teacher = self.dbConnector.loadTeacherFromDatabase(self.inputID)
+        print(self.teacher.FirstName)# + " " + self.teacher.LastName)
         if self.teacher is not None:
             self.eventHandler.loginSuccess.emit()
         self.teacher.setupEventHandler(self.eventHandler)
