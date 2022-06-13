@@ -4,11 +4,11 @@ from datetime import datetime
 from pyparsing import empty
 from Location import Location
 
-class TimeFrameType(Enum):
+class ClassType(Enum):
     """Custom type for TimeFrame"""
-    Lecture = 1
-    Class = 2
-    Meeting = 3
+    Lecture = "Lecture"
+    Class = "Class"
+    Meeting = "Meeting"
 
 class Day(Enum):
     """Custom type for weekday"""
@@ -48,11 +48,13 @@ class TimeFrame():
         self.Weekday = Weekday
         self.CourseID = CourseID
     
-    def fillTimeFrame(self, Location: Location, Type: TimeFrameType, RoomID):
+    def fillTimeFrame(self, ClassType: ClassType, RoomID):
         #Placeholder method for eg. course secretary to fill in remaining information
-        self.Location = Location
-        self.Type = Type
+        self.ClassType = ClassType
         self.RoomID = RoomID
+
+    def setLocation(self, inputLocation: Location):
+        self.Location = inputLocation
 
     def updateID(self, ID):
         self.TimeFrameID = ID
