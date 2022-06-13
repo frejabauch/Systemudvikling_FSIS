@@ -90,4 +90,13 @@ class DatabaseConnector:
 
         databaseCursor.close()
 
+    def loadAllTimetables(self):
+        databaseCursor = self.databaseConnection.cursor()
+        query = "SELECT * FROM Timeframe"
+        databaseCursor.execute(query)
+        result = databaseCursor.fetchall()
+        print(result)
+        databaseCursor.close()
+
+
 

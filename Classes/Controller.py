@@ -13,7 +13,8 @@ class Controller():
         self.eventHandler = view.eventHandler
         self.dbConnector = DatabaseConnector()
         self.dbConnector.connectToDatabase()
-        # self.dbConnector.loadAllTeachers()
+        self.dbConnector.loadAllTeachers()
+        self.dbConnector.loadAllTimetables()
         self.setupEventConnections()
         self.view.loadUi()
 
