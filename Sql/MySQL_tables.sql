@@ -1,3 +1,4 @@
+USE new_iter3;
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS Location;
 DROP TABLE IF EXISTS Course;
@@ -83,9 +84,9 @@ CREATE TABLE IF NOT EXISTS `TimeFrame`(
   `StartTime` time DEFAULT NULL,
   `EndTime` time DEFAULT NULL,
   `Weekday`enum('Mon', 'Tue', 'Wed', 'Thu', 'Fri') not null,
+  `CourseID` VARCHAR(255),
   `ClassType` enum('Lecture','Class','Meeting') DEFAULT NULL,
   `RoomID` VARCHAR(255),
-  `CourseID` VARCHAR(255),
   PRIMARY KEY (`TimeFrameID`),
   FOREIGN KEY (`RoomID`) REFERENCES `Location`(`RoomID`),
   FOREIGN KEY (`CourseID`) REFERENCES `Course`(`CourseID`)
