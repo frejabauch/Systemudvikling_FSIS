@@ -2,6 +2,7 @@ import mysql.connector
 from mysql.connector import errorcode
 from TeacherToXML import TeacherToXML
 from XMLToTeacher import XMLToTeacher
+from TimeFrameToXML import TimeFrameToXML
 from Course import Course
 from Schedule import Schedule
 from TimeFrame import TimeFrame
@@ -69,6 +70,7 @@ class DatabaseConnector:
         databaseCursor.execute(query)
         result = databaseCursor.fetchall()
         teacherObjects = [Teacher(*res[:5]) for res in result]
+        print(teacherObjects)
         ttx = TeacherToXML(teacherObjects)
         ttx.write_file()
 
@@ -78,7 +80,7 @@ class DatabaseConnector:
         #databaseCursor = self.dbConnector.databaseConnection.cursor()
         query2 = 'INSERT into User (FirstName, LastName, Mail, PhoneNumber, UserID) VALUES (%s, %s, %s, %s, %s)'
         val = ("Kurt", "Kurtsen", "KK@mail.dk", 59283746, "KLF897")
-        databaseCursor.execute(query2, val)
+        #databaseCursor.execute(query2, val)
         self.databaseConnection.commit()
 
 
@@ -89,5 +91,18 @@ class DatabaseConnector:
             print("Teacher: ", getattr(teacher, "TeacherID"), getattr(teacher, "FirstName"), getattr(teacher, "LastName"), getattr(teacher, "PhoneNumber"), getattr(teacher, "Mail"))
 
         databaseCursor.close()
+
+    def loadAllTimeFrames(self):
+        databaseCursor = self.databaseConnection.cursor()
+        query = "SELECT * FROM Timeframe"
+        databaseCursor.execute(query)
+        result = databaseCursor.fetchall()
+        timeframeObjects = [TimeFrame.updateID(res[0]) + TimeFrame(*res[1:5]) for res in result]
+        print(timeframeObjects)
+        tftx = TimeFrameToXML(timeframeObjects)
+        tftx.write_file()
+        #timeframeList = XMLToTimeFrame("Timeframe.xml").parseXML()
+        databaseCursor.close()
+
 
 

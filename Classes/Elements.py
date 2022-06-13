@@ -1,5 +1,6 @@
 from lxml import objectify
 from Teacher import Teacher
+from TimeFrame import TimeFrame
 
 class Elements:
     @staticmethod
@@ -11,3 +12,13 @@ class Elements:
         teacher.Mail = getattr(teacher_obj, "Mail")
         teacher.TeacherID = getattr(teacher_obj, "TeacherID")
         return teacher
+
+    @staticmethod
+    def create_timeframe(timeframe_obj: TimeFrame):
+        timeframe = objectify.Element("times")
+        timeframe.TimeFrameID = getattr(timeframe_obj, "TimeFrameID")
+        timeframe.StartTime = getattr(timeframe_obj, "StartTime")
+        timeframe.EndTime = getattr(timeframe_obj, "EndTime")
+        timeframe.Weekday = getattr(timeframe_obj, "Weekday")
+        timeframe.CourseID = getattr(timeframe_obj, "CourseID")
+        return timeframe
