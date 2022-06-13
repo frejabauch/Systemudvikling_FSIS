@@ -1,8 +1,8 @@
 import mysql.connector
 from mysql.connector import errorcode
 from TeacherToXML import TeacherToXML
-from XMLToTeacher import XMLToTeacher
 from TimeFrameToXML import TimeFrameToXML
+from XMLToTeacher import XMLToTeacher
 from Course import Course
 from Schedule import Schedule
 from TimeFrame import TimeFrame
@@ -55,7 +55,6 @@ class DatabaseConnector:
         query = f"INSERT INTO Schedule(StartDate, EndDate, ScheduleStatus, AdminID, EducationID, CSID) VALUES ('{InputSchedule.StartDate}', '{InputSchedule.EndDate}', '{InputSchedule.ScheduleStatus.value}', '{InputSchedule.AdminID}', {InputSchedule.EducationID}, '{InputSchedule.CSID}');"
         databaseCursor.execute(query)
         self.databaseConnection.commit()
-        print(f"Schedule with ID {InputSchedule.ScheduleID} saved successfully.")
         databaseCursor.close()
     
     def saveCourseToDatabase(self, inputCourse: Course):
@@ -70,7 +69,6 @@ class DatabaseConnector:
         databaseCursor.execute(query)
         result = databaseCursor.fetchall()
         teacherObjects = [Teacher(*res[:5]) for res in result]
-        print(teacherObjects)
         ttx = TeacherToXML(teacherObjects)
         ttx.write_file()
 
@@ -80,7 +78,7 @@ class DatabaseConnector:
         #databaseCursor = self.dbConnector.databaseConnection.cursor()
         query2 = 'INSERT into User (FirstName, LastName, Mail, PhoneNumber, UserID) VALUES (%s, %s, %s, %s, %s)'
         val = ("Kurt", "Kurtsen", "KK@mail.dk", 59283746, "KLF897")
-        #databaseCursor.execute(query2, val)
+        databaseCursor.execute(query2, val)
         self.databaseConnection.commit()
 
 
@@ -92,17 +90,18 @@ class DatabaseConnector:
 
         databaseCursor.close()
 
+    
     def loadAllTimeFrames(self):
         databaseCursor = self.databaseConnection.cursor()
         query = "SELECT * FROM Timeframe"
         databaseCursor.execute(query)
         result = databaseCursor.fetchall()
-        timeframeObjects = [TimeFrame.updateID(res[0]) + TimeFrame(*res[1:5]) for res in result]
-        print(timeframeObjects)
+        for i in result:
+            print(i)
+        timeframeObjects = [(TimeFrame(*res[1:5])) for res in result]
+        for i in range(len(timeframeObjects)):
+            (timeframeObjects[i].updateID(result[i][0]))
         tftx = TimeFrameToXML(timeframeObjects)
         tftx.write_file()
         #timeframeList = XMLToTimeFrame("Timeframe.xml").parseXML()
         databaseCursor.close()
-
-
-
