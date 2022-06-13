@@ -11,12 +11,9 @@ class Schedule{
     StartDate : datetime
     EndDate : datetime
     ScheduleStatus : ScheduleStatus
-    CourseID : String
     AdminID : String
     EducationID : Int
     CSID : String
-
-    ViewSchedule()
 }
 
 class Location{
@@ -34,6 +31,7 @@ class Course{
     Teacher : Teacher
     Faculty : Faculty
     Schedule : Schedule
+    ScheduleID : Int
 }
 
 
@@ -115,6 +113,7 @@ Student"1" o-- "1" Education : has a
 Schedule"1" o-- "1"Education : has a
 Schedule"0..*" -- Admin
 Schedule"0..*" -- CourseSecretary
+Schedule -- Teacher
 
 ' Login "1" -- "1" User : login
 
