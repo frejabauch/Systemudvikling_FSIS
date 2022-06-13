@@ -9,6 +9,7 @@ class EventCommunicator(QtCore.QObject):
     loginSuccess = QtCore.pyqtSignal()
     loginFailed = QtCore.pyqtSignal()
     frontPage = QtCore.pyqtSignal()
+    saved = QtCore.pyqtSignal()
     proposed = QtCore.pyqtSignal()
 
 
@@ -41,7 +42,7 @@ class UiLoader():
 class loginUi(QtWidgets.QMainWindow):
     def __init__(self, EventCommunicator):
         super(loginUi, self).__init__()
-        uic.loadUi('gui/login.ui', self)
+        uic.loadUi('login.ui', self)
         self.eventHandler = EventCommunicator
         self.label.setPixmap(QtGui.QPixmap("ku_logo_uk_v.png"))
         #Knapper:
@@ -55,7 +56,7 @@ class loginUi(QtWidgets.QMainWindow):
 class frontpage_backUi(QtWidgets.QMainWindow):
     def __init__(self, EventCommunicator):
         super(frontpage_backUi, self).__init__()
-        uic.loadUi('gui/frontpage_back2.ui', self)
+        uic.loadUi('frontpage_back2.ui', self)
         self.toSchedule.clicked.connect(self.openWindow)
         self.eventHandler = EventCommunicator
 
@@ -71,7 +72,7 @@ class frontpage_backUi(QtWidgets.QMainWindow):
 class proposeScheduleUi(QtWidgets.QMainWindow):
     def __init__(self, EventCommunicator):
         super(proposeScheduleUi, self).__init__()
-        uic.loadUi('gui/proposeSchedule.ui', self)
+        uic.loadUi('proposeSchedule.ui', self)
 
         self.textBrowser.setText("Not available dates:")
         self.proposedTimeList = []
@@ -111,7 +112,7 @@ class proposeScheduleUi(QtWidgets.QMainWindow):
     def openPopup(self):
         """Sends signal that opens success window"""
         self.saveUiTimeList()
-        self.eventHandler.proposed.emit()
+        self.eventHandler.saved.emit()
     
     def setName(self, name):
         """Set name in GUI to input name"""
@@ -120,5 +121,5 @@ class proposeScheduleUi(QtWidgets.QMainWindow):
 class successUi(QtWidgets.QMainWindow):
     def __init__(self):
         super(successUi, self).__init__()
-        uic.loadUi('gui/success.ui', self)
+        uic.loadUi('success.ui', self)
 
