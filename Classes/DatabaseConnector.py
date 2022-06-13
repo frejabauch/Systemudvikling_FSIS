@@ -6,7 +6,7 @@ from XMLToTeacher import XMLToTeacher
 from XMLToTimeFrame import XMLToTimeFrame
 from Course import Course
 from Schedule import Schedule
-from TimeFrame import TimeFrame
+from TimeFrame import TimeFrame, ClassType
 from Teacher import Teacher
 
 class DatabaseConnector:
@@ -96,9 +96,10 @@ class DatabaseConnector:
         query = "SELECT * FROM Timeframe"
         databaseCursor.execute(query)
         result = databaseCursor.fetchall()
-        timeframeObjects = [(TimeFrame(*res[1:6])) for res in result]
+        timeframeObjects = [(TimeFrame(*res[1:5])) for res in result]
         for i in range(len(timeframeObjects)):
-            (timeframeObjects[i].updateID(result[i][0]))
+            timeframeObjects[i].updateID(result[i][0])
+            timeframeObjects[i].fillTimeFrame(ClassType(result[i][5]), result[i][6])
         tftx = TimeFrameToXML(timeframeObjects)
         tftx.write_file()
 

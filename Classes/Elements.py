@@ -21,4 +21,6 @@ class Elements:
         timeframe.EndTime = getattr(timeframe_obj, "EndTime")
         timeframe.Weekday = getattr(timeframe_obj, "Weekday")
         timeframe.CourseID = getattr(timeframe_obj, "CourseID")
+        timeframe.ClassType = getattr(timeframe_obj, "ClassType").value
+        timeframe.RoomID = getattr(timeframe_obj, "RoomID")
         return timeframe
