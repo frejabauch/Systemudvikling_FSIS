@@ -10,8 +10,9 @@ class ScheduleStatus(Enum):
     Confirmed = "Confirmed"
 
 class Schedule():
-    def __init__(self, ScheduleID: int, StartDate: datetime, EndDate: datetime, ScheduleStatus: ScheduleStatus, AdminID: str, EducationID: int, CSID: str):
-        self.ScheduleID = ScheduleID
+    def __init__(self, StartDate: datetime, EndDate: datetime, ScheduleStatus: ScheduleStatus, AdminID: str, EducationID: int, CSID: str):
+        #ScheduleID assigned my auto increment in database
+        #self.ScheduleID = ScheduleID
         self.StartDate = StartDate
         self.EndDate = EndDate
         self.ScheduleStatus = ScheduleStatus

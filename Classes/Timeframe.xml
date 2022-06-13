@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<time>
+  <times>
+    <TimeFrameID>1</TimeFrameID>
+    <StartTime>8:00:00</StartTime>
+    <EndTime>10:00:00</EndTime>
+    <Weekday>Fri</Weekday>
+    <CourseID>Lecture</CourseID>
+  </times>
+  <times>
+    <TimeFrameID>2</TimeFrameID>
+    <StartTime>10:00:00</StartTime>
+    <EndTime>12:00:00</EndTime>
+    <Weekday>Fri</Weekday>
+    <CourseID>Class</CourseID>
+  </times>
+  <times>
+    <TimeFrameID>3</TimeFrameID>
+    <StartTime>13:00:00</StartTime>
+    <EndTime>17:00:00</EndTime>
+    <Weekday>Mon</Weekday>
+    <CourseID>Lecture</CourseID>
+  </times>
+  <times>
+    <TimeFrameID>4</TimeFrameID>
+    <StartTime>8:00:00</StartTime>
+    <EndTime>11:00:00</EndTime>
+    <Weekday>Tue</Weekday>
+    <CourseID>Lecture</CourseID>
+  </times>
+</time>

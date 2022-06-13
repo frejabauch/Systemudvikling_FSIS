@@ -8,7 +8,10 @@ class Teacher(User):
         self.TeacherID = TeacherID
         #self.TeacherID = self.UserID
 
+    def setupEventHandler(self, eventHandler):
+        self.eventHandler = eventHandler
+
+
     def proposeSchedule(self):
-        semesterStart = datetime.strptime('01/02/22 07:00:00', '%d/%m/%y %H:%M:%S')
-        semesterEnd = datetime.strptime('28/06/22 18:00:00', '%d/%m/%y %H:%M:%S')
-        return Schedule(1234, semesterStart, semesterEnd, ScheduleStatus.Proposed, "FGH345", 312, "BCD234")
+        self.eventHandler.proposed.emit()
+        
