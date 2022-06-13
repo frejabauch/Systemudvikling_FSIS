@@ -51,7 +51,7 @@ class DatabaseConnector:
     
     def saveScheduleToDatabase(self, InputSchedule: Schedule):
         databaseCursor = self.databaseConnection.cursor()
-        query = f"INSERT INTO Schedule(ScheduleID, StartDate, EndDate, ScheduleStatus, AdminID, EducationID, CSID) VALUES ({InputSchedule.ScheduleID}, '{InputSchedule.StartDate}', '{InputSchedule.EndDate}', '{InputSchedule.ScheduleStatus.value}', '{InputSchedule.AdminID}', {InputSchedule.EducationID}, '{InputSchedule.CSID}');"
+        query = f"INSERT INTO Schedule(StartDate, EndDate, ScheduleStatus, AdminID, EducationID, CSID) VALUES ('{InputSchedule.StartDate}', '{InputSchedule.EndDate}', '{InputSchedule.ScheduleStatus.value}', '{InputSchedule.AdminID}', {InputSchedule.EducationID}, '{InputSchedule.CSID}');"
         databaseCursor.execute(query)
         self.databaseConnection.commit()
         print(f"Schedule with ID {InputSchedule.ScheduleID} saved successfully.")
@@ -59,7 +59,7 @@ class DatabaseConnector:
     
     def saveCourseToDatabase(self, inputCourse: Course):
         databaseCursor = self.databaseConnection.cursor()
-        query = f"INSERT INTO Course(CourseID, ECTS, TeacherID, Faculty, ScheduleID) VALUES ('{inputCourse.CourseID}', '{inputCourse.ECTS}', '{inputCourse.TeacherID}', '{inputCourse.Faculty}', {inputCourse.ScheduleID})"
+        query = f"INSERT INTO Course(CourseID, ECTS, TeacherID, Faculty, ScheduleID) VALUES ('{inputCourse.CourseID}', '{inputCourse.ECTS}', '{inputCourse.TeacherID}', '{inputCourse.Faculty}', {inputCourse.ScheduleID}) ON DUPLICATE KEY UPDATE ECTS = Values(ECTS), TeacherID = Values(TeacherID), Faculty = Values(Faculty), ScheduleID = Values(ScheduleID);"
         databaseCursor.execute(query)
         self.databaseConnection.commit()
 
