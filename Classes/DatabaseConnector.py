@@ -73,16 +73,15 @@ class DatabaseConnector:
         ttx = TeacherToXML(teacherObjects)
         ttx.write_file()
 
-        teacherList = XMLToTeacher("Teachers.xml").parseXML()
+        teacherList = XMLToTeacher("teacherdummy.xml").parseXML()
 
         teachers = teacherList.get_teachers()
-        #databaseCursor = self.dbConnector.databaseConnection.cursor()
-        #query2 = 'INSERT into User (FirstName, LastName, Mail, PhoneNumber, UserID) VALUES (%s, %s, %s, %s, %s)'
-        #val = ("Kurt", "Kurtsen", "KK@mail.dk", 59283746, "KLF897")
-        #databaseCursor.execute(query2, val)
-        #self.databaseConnection.commit()
-
-
+        query2 = "INSERT into User (FirstName, LastName, Mail, PhoneNumber, UserID) VALUES (%s, %s, %s, %s, %s)"
+        for teacher in teachers:
+            val = (str(getattr(teacher, "TeacherID")), str(getattr(teacher, "FirstName")), str(getattr(teacher, "LastName")), str(getattr(teacher, "PhoneNumber")), str(getattr(teacher, "Mail")))
+            print(val)
+            databaseCursor.execute(query2, val)
+            self.databaseConnection.commit()
 
         for teacher in teachers:
             print("-" * 30)
@@ -97,9 +96,7 @@ class DatabaseConnector:
         query = "SELECT * FROM Timeframe"
         databaseCursor.execute(query)
         result = databaseCursor.fetchall()
-        for i in result:
-            print(i)
-        timeframeObjects = [(TimeFrame(*res[1:5])) for res in result]
+        timeframeObjects = [(TimeFrame(*res[1:6])) for res in result]
         for i in range(len(timeframeObjects)):
             (timeframeObjects[i].updateID(result[i][0]))
         tftx = TimeFrameToXML(timeframeObjects)
@@ -108,12 +105,13 @@ class DatabaseConnector:
         timeframeList = XMLToTimeFrame("Timeframe.xml").parseXML()
         timeframes = timeframeList.get_timeframes()
 
+
         #self.databaseConnection.commit()
 
         for timeframe in timeframes:
             print("-" * 30)
             print()
-            print("Teacher: ", getattr(timeframe, "StartTime"), getattr(timeframe, "EndTime"), getattr(timeframe, "Weekday"), getattr(timeframe, "CourseID"))
+            print("TimeFrame ", getattr(timeframe, "StartTime"), getattr(timeframe, "EndTime"), getattr(timeframe, "Weekday"), getattr(timeframe, "CourseID"))
 
 
         databaseCursor.close()

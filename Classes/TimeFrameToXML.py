@@ -9,10 +9,8 @@ class TimeFrameToXML:
 
     def write_file(self):
         root = etree.Element("time")
-        print(self.timeframes)
         for timeframe in self.timeframes:
             timeframe_element = Elements.create_timeframe(timeframe)
-            print(timeframe_element)
             root.append(timeframe_element)
 
         objectify.deannotate(root)

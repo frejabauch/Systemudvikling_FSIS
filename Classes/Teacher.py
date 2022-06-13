@@ -3,7 +3,7 @@ from Schedule import Schedule, ScheduleStatus
 from User import User
 
 class Teacher(User):
-    def __init__(self, FirstName, LastName, PhoneNumber, Mail, TeacherID):
+    def __init__(self, TeacherID, FirstName, LastName, PhoneNumber, Mail):
         User.__init__(self, FirstName, LastName, PhoneNumber, Mail)
         self.TeacherID = TeacherID
         #self.TeacherID = self.UserID

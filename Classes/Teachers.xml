@@ -1,38 +1,38 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <teach>
   <teach>
-    <FirstName>ABC123</FirstName>
-    <LastName>Mette</LastName>
-    <PhoneNumber>Jensen</PhoneNumber>
-    <Mail>mettejensen@sund.ku.dk</Mail>
-    <TeacherID>91827364</TeacherID>
+    <FirstName>Mette</FirstName>
+    <LastName>Jensen</LastName>
+    <PhoneNumber>mettejensen@sund.ku.dk</PhoneNumber>
+    <Mail>91827364</Mail>
+    <TeacherID>ABC123</TeacherID>
   </teach>
   <teach>
-    <FirstName>ACD321</FirstName>
-    <LastName>Bent</LastName>
-    <PhoneNumber>Bentsen</PhoneNumber>
-    <Mail>Bent_bentsen@gmail.com</Mail>
-    <TeacherID>11223344</TeacherID>
+    <FirstName>Bent</FirstName>
+    <LastName>Bentsen</LastName>
+    <PhoneNumber>Bent_bentsen@gmail.com</PhoneNumber>
+    <Mail>11223344</Mail>
+    <TeacherID>ACD321</TeacherID>
   </teach>
   <teach>
-    <FirstName>BDC987</FirstName>
-    <LastName>Jan</LastName>
-    <PhoneNumber>Johanson</PhoneNumber>
-    <Mail>JJ@hotmail.com</Mail>
-    <TeacherID>22334455</TeacherID>
+    <FirstName>Jan</FirstName>
+    <LastName>Johanson</LastName>
+    <PhoneNumber>JJ@hotmail.com</PhoneNumber>
+    <Mail>22334455</Mail>
+    <TeacherID>BDC987</TeacherID>
   </teach>
   <teach>
-    <FirstName>JLM768</FirstName>
-    <LastName>Peter</LastName>
-    <PhoneNumber>Petersen</PhoneNumber>
-    <Mail>PP@gmail.com</Mail>
-    <TeacherID>20201020</TeacherID>
+    <FirstName>Peter</FirstName>
+    <LastName>Petersen</LastName>
+    <PhoneNumber>PP@gmail.com</PhoneNumber>
+    <Mail>20201020</Mail>
+    <TeacherID>JLM768</TeacherID>
   </teach>
   <teach>
-    <FirstName>MJE321</FirstName>
-    <LastName>Susanne</LastName>
-    <PhoneNumber>Karlsen</PhoneNumber>
-    <Mail>SusanneKarlsen@hotmail.com</Mail>
-    <TeacherID>12345678</TeacherID>
+    <FirstName>Susanne</FirstName>
+    <LastName>Karlsen</LastName>
+    <PhoneNumber>SusanneKarlsen@hotmail.com</PhoneNumber>
+    <Mail>12345678</Mail>
+    <TeacherID>MJE321</TeacherID>
   </teach>
 </teach>

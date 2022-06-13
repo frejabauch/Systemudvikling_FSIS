@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<teach>
+    <teach>
+        <FirstName>Gurli</FirstName>
+        <LastName>Gris</LastName>
+        <PhoneNumber>GG@sund.ku.dk</PhoneNumber>
+        <Mail>98787656</Mail>
+        <TeacherID>BFD432</TeacherID>
+    </teach>
+    <teach>
+        <FirstName>Gustav</FirstName>
+        <LastName>Gris</LastName>
+        <PhoneNumber>GuGr@gmail.com</PhoneNumber>
+        <Mail>98097805</Mail>
+        <TeacherID>TRE333</TeacherID>
+    </teach>
+</teach>
+
+
+
