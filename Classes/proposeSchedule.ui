@@ -831,7 +831,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text">
-       <string>10:00-11:00</string>
+       <string>10:00 - 11:00</string>
       </property>
      </widget>
      <widget class="QCheckBox" name="Mon13">
