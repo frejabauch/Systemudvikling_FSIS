@@ -48,7 +48,7 @@ class Controller():
         semesterStart = datetime.strptime('01/02/22 07:00:00', '%d/%m/%y %H:%M:%S')
         semesterEnd = datetime.strptime('28/06/22 18:00:00', '%d/%m/%y %H:%M:%S')
         proposedSchedule = Schedule(semesterStart, semesterEnd, ScheduleStatus.Proposed, "FGH345", 312, "BCD234")
-        dummyCourse = Course("DummyCourse", 7.5, "ABC123", 'Science', 1234)
+        dummyCourse = Course("DummyCourse", 7.5, "ABC123", 'Science', 1)
         self.dbConnector.saveScheduleToDatabase(proposedSchedule)
         self.dbConnector.saveCourseToDatabase(dummyCourse)
         for timeFrame in self.timeFrameList:
