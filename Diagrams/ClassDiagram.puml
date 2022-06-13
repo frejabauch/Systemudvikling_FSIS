@@ -14,6 +14,7 @@ class Schedule{
     AdminID : String
     EducationID : Int
     CSID : String
+    CourseList : Course[]
 }
 
 class Location{
@@ -30,7 +31,6 @@ class Course{
     TeacherID : String
     Teacher : Teacher
     Faculty : Faculty
-    Schedule : Schedule
     ScheduleID : Int
 }
 
@@ -60,7 +60,7 @@ class Teacher{
     SaveProposedSchedule()
     SendProposedSchedule()
     CreateSchedule()
-    ProposeSchedule()
+    ' ProposeSchedule()
     ViewSchedule()
     EditSchedule()
 }
@@ -113,7 +113,6 @@ Student"1" o-- "1" Education : has a
 Schedule"1" o-- "1"Education : has a
 Schedule"0..*" -- Admin
 Schedule"0..*" -- CourseSecretary
-Schedule -- Teacher
 
 ' Login "1" -- "1" User : login
 

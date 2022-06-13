@@ -1,10 +1,10 @@
 import mysql.connector
 from mysql.connector import errorcode
-# from TeacherToXML import TeacherToXML
-# from XMLToTeacher import XMLToTeacher
+from TeacherToXML import TeacherToXML
+from XMLToTeacher import XMLToTeacher
 from Course import Course
 from Schedule import Schedule
-from TimeFrame import TimeFrame, TimeFrameBuilder
+from TimeFrame import TimeFrame
 from Teacher import Teacher
 
 class DatabaseConnector:
@@ -68,13 +68,7 @@ class DatabaseConnector:
         query = "SELECT * FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID"
         databaseCursor.execute(query)
         result = databaseCursor.fetchall()
-        # databaseCursor.close()
-
-        teacherObjects = [Teacher(res) for res in result]
-        # ts = []
-        # for res in result:
-        #     raw_teacher = Teacher(*res)
-        #     ts.append_teachers(raw_teacher)
+        teacherObjects = [Teacher(*res[:5]) for res in result]
         ttx = TeacherToXML(teacherObjects)
         ttx.write_file()
 

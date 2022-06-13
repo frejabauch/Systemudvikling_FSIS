@@ -5,10 +5,6 @@ from TimeFrame import TimeFrameBuilder
 from DatabaseConnector import DatabaseConnector
 from datetime import datetime
 from UiLoader import UiLoader, EventCommunicator
-from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QCheckBox
-# from TeacherToXML import TeacherToXML
-# from XMLToTeacher import XMLToTeacher
 
 class Controller():
 
@@ -17,7 +13,7 @@ class Controller():
         self.eventHandler = view.eventHandler
         self.dbConnector = DatabaseConnector()
         self.dbConnector.connectToDatabase()
-        # self.loadAllTeachers()
+        # self.dbConnector.loadAllTeachers()
         self.setupEventConnections()
         self.view.loadUi()
 
@@ -46,16 +42,10 @@ class Controller():
         self.timeFrameList = builder.createTimeFrameList("DummyCourse")
 
     def insertSchedule(self):
-        semesterStart = datetime.strptime('01/02/22 07:00:00', '%d/%m/%y %H:%M:%S')
-        semesterEnd = datetime.strptime('28/06/22 18:00:00', '%d/%m/%y %H:%M:%S')
-        proposedSchedule = Schedule(1234, semesterStart, semesterEnd, ScheduleStatus.Proposed, "FGH345", 312, "BCD234")
+        proposedSchedule = self.teacher.proposeSchedule()
         dummyCourse = Course("DummyCourse", 7.5, "ABC123", 'Science', 1234)
         self.dbConnector.saveScheduleToDatabase(proposedSchedule)
         self.dbConnector.saveCourseToDatabase(dummyCourse)
         for timeFrame in self.timeFrameList:
             self.dbConnector.saveTimeFrameToDatabase(timeFrame)
         
-
-e = EventCommunicator()
-v = UiLoader(e)
-c = Controller(v)

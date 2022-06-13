@@ -42,7 +42,7 @@ class TimeFrameBuilder():
 class TimeFrame():
     def __init__(self, StartTime: datetime, EndTime: datetime, Weekday: Day, CourseID: str):
         #TimeFrameID set by auto-increment in database
-        self.TimeFrameID
+        self.TimeFrameID = None
         self.StartTime = StartTime
         self.EndTime = EndTime
         self.Weekday = Weekday

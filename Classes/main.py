@@ -1,9 +1,7 @@
-from loginUi import *
-import sys
+from Controller import Controller
+from UiLoader import EventCommunicator, UiLoader
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    window = loginUi()
-    window.show()
-    app.exec()
+
+e = EventCommunicator()
+v = UiLoader(e)
+c = Controller(v)

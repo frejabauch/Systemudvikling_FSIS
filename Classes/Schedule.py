@@ -1,6 +1,8 @@
 from datetime import datetime
 from enum import Enum
 
+from Course import Course
+
 class ScheduleStatus(Enum):
     """Custom type for status of Schedule"""
     Incomplete = "Incomplete"
@@ -16,3 +18,7 @@ class Schedule():
         self.AdminID = AdminID
         self.EducationID = EducationID
         self.CSID = CSID
+        self.CourseList = []
+    
+    def addCourse(self, inputCourse: Course):
+        self.CourseList.append(inputCourse)
