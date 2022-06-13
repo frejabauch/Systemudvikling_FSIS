@@ -53,3 +53,6 @@ class TimeFrame():
         self.Location = Location
         self.Type = Type
         self.RoomID = RoomID
+
+    def updateID(self, ID):
+        self.TimeFrameID = ID

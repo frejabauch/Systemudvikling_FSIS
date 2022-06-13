@@ -14,7 +14,7 @@ class Controller():
         self.dbConnector = DatabaseConnector()
         self.dbConnector.connectToDatabase()
         self.dbConnector.loadAllTeachers()
-        self.dbConnector.loadAllTimetables()
+        self.dbConnector.loadAllTimeFrames()
         self.setupEventConnections()
         self.view.loadUi()
 
