@@ -55,15 +55,15 @@ INSERT into course(CourseID, ECTS, TeacherID, Faculty, ScheduleID) Values ('6256
 INSERT into course(CourseID, ECTS, TeacherID, Faculty, ScheduleID) Values ('SITB18009U', 7.5, 'JLM768', 'SUND', 4);
 SELECT * FROM course;
 
-INSERT into TimeFrame(TimeFrameID, StartTime, EndTime, Weekday, ClassType, RoomID, CourseID) Values (NULL, '2022-05-20 08:00:00', '2022-05-20 10:00:00', 'Fri', 'Lecture', 'A04', 'NDAB19000U');
-INSERT into TimeFrame(TimeFrameID, StartTime, EndTime, Weekday, ClassType, RoomID, CourseID) Values (NULL, '2022-05-20 10:00:00', '2022-05-20 12:00:00', 'Fri', 'Class', '31.01', 'NDAB19000U');
-INSERT into TimeFrame(TimeFrameID, StartTime, EndTime, Weekday, ClassType, RoomID, CourseID) Values (NULL, '2022-05-23 13:00:00', '2022-05-20 17:00:00', 'Mon', 'Lecture', 'A01', 'SITB15002U');
-INSERT into TimeFrame(TimeFrameID, StartTime, EndTime, Weekday, ClassType, RoomID, CourseID) Values (NULL, '2022-05-24 08:00:00', '2022-05-20 11:00:00', 'Tue', 'Lecture', 'UP1', '62560');
+INSERT into TimeFrame(TimeFrameID, StartTime, EndTime, Weekday, ClassType, RoomID, CourseID) Values (NULL, '08:00:00', '10:00:00', 'Fri', 'Lecture', 'A04', 'NDAB19000U');
+INSERT into TimeFrame(TimeFrameID, StartTime, EndTime, Weekday, ClassType, RoomID, CourseID) Values (NULL, '10:00:00', '12:00:00', 'Fri', 'Class', '31.01', 'NDAB19000U');
+INSERT into TimeFrame(TimeFrameID, StartTime, EndTime, Weekday, ClassType, RoomID, CourseID) Values (NULL, '13:00:00', '17:00:00', 'Mon', 'Lecture', 'A01', 'SITB15002U');
+INSERT into TimeFrame(TimeFrameID, StartTime, EndTime, Weekday, ClassType, RoomID, CourseID) Values (NULL, '08:00:00', '11:00:00', 'Tue', 'Lecture', 'UP1', '62560');
 SELECT * FROM TimeFrame;
 
-INSERT into student(StudentID, Enrollment, CourseID) Values ('GWT352', 312, 'NDAB19000U');
-INSERT into student(StudentID, Enrollment, CourseID) Values ('BTY667', 312, 'NDAB19000U');
-INSERT into student(StudentID, Enrollment, CourseID) Values ('ABM552', 312, 'NDAB19000U');
+INSERT into student(StudentID, Enrollment) Values ('GWT352', 312);
+INSERT into student(StudentID, Enrollment) Values ('BTY667', 312);
+INSERT into student(StudentID, Enrollment) Values ('ABM552', 312);
 SELECT * FROM student;
 
 SELECT user.userid, user.FirstName, user.LastName, user.mail, user.PhoneNumber, Teacher.TeacherID
