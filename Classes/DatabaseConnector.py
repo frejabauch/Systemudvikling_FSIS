@@ -64,6 +64,7 @@ class DatabaseConnector:
         databaseCursor.execute(query)
         self.databaseConnection.commit()
 
+    #XML teachers
     def loadAllTeachers(self):
         databaseCursor = self.databaseConnection.cursor()
         query = "SELECT * FROM Teacher INNER JOIN User ON User.UserID=Teacher.TeacherID"
@@ -90,7 +91,7 @@ class DatabaseConnector:
 
         databaseCursor.close()
 
-    
+    #XML timeframes
     def loadAllTimeFrames(self):
         databaseCursor = self.databaseConnection.cursor()
         query = "SELECT * FROM Timeframe"
