@@ -1,5 +1,5 @@
 from lxml import objectify
-from TimeFrame import TimeFrame
+from TimeFrame import TimeFrame, ClassType
 from Timeframes import TimeFrames
 
 # Used sysdev cookbook

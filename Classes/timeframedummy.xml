@@ -1,28 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <time>
     <times>
-        <StartTime>9:00:00</StartTime>
-        <EndTime>11:00:00</EndTime>
-        <Weekday>Tue</Weekday>
-        <CourseID>Class</CourseID>
-    </times>
-    <times>
-        <StartTime>10:00:00</StartTime>
-        <EndTime>13:00:00</EndTime>
-        <Weekday>Wed</Weekday>
-        <CourseID>Lecture</CourseID>
-    </times>
-    <times>
         <StartTime>08:00:00</StartTime>
         <EndTime>15:00:00</EndTime>
         <Weekday>Fri</Weekday>
-        <CourseID>Class</CourseID>
+        <CourseID>NDAB19000U</CourseID>
+        <ClassType>Class</ClassType>
+        <RoomID>A04</RoomID>
     </times>
     <times>
         <TimeFrameID>4</TimeFrameID>
         <StartTime>9:00:00</StartTime>
         <EndTime>13:00:00</EndTime>
         <Weekday>Thu</Weekday>
-        <CourseID>Class</CourseID>
+        <CourseID>NDAB19000U</CourseID>
+        <ClassType>Lecture</ClassType>
+        <RoomID>31.01</RoomID>
     </times>
 </time>
