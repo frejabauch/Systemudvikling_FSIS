@@ -18,6 +18,7 @@ class XMLToTimeFrame:
 
         for timeframe in root.getchildren():
             timeframe_obj = TimeFrame(timeframe.StartTime, timeframe.EndTime, timeframe.Weekday, timeframe.CourseID)
+            timeframe_obj.fillTimeFrame(timeframe.ClassType, timeframe.RoomID)
 
             timeframeList.append_timeframes(timeframe_obj)
         return timeframeList
