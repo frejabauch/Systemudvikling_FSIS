@@ -100,6 +100,7 @@ class proposeScheduleUi(QtWidgets.QMainWindow):
         date = self.dateTimeEdit.date().toPyDate()
         dateStr = date.strftime("%d %m %Y")
         self.notAvailableDateList.append(dateStr)
+        self.saveUiTimeList()
         self.textBrowser.append(dateStr)
 
     def undo_btn(self):
@@ -111,7 +112,6 @@ class proposeScheduleUi(QtWidgets.QMainWindow):
 
     def openPopup(self):
         """Sends signal that opens success window"""
-        self.saveUiTimeList()
         self.eventHandler.saved.emit()
     
     def setName(self, name):

@@ -104,9 +104,15 @@ class DatabaseConnector:
         tftx = TimeFrameToXML(timeframeObjects)
         tftx.write_file()
 
-        timeframeList = XMLToTimeFrame("Timeframe.xml").parseXML()
+        timeframeList = XMLToTimeFrame("timeframedummy.xml").parseXML()
         timeframes = timeframeList.get_timeframes()
 
+        query2 = "INSERT into timeframe (StartTime, EndTime, Weekday, CourseID, ClassType, RoomID) VALUES (%s, %s, %s, %s, %s, %s)"
+        for timeframe in timeframes:
+            val = (str(getattr(timeframe, "StartTime")), str(getattr(timeframe, "EndTime")), str(getattr(timeframe, "Weekday")), str(getattr(timeframe, "CourseID")), str(getattr(timeframe, "ClassType")), str(getattr(timeframe, "RoomID")))
+            print(val)
+            databaseCursor.execute(query2, val)
+        self.databaseConnection.commit()
 
         #self.databaseConnection.commit()
 

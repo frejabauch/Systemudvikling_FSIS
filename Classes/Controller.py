@@ -13,6 +13,7 @@ class Controller():
         self.eventHandler = view.eventHandler
         self.dbConnector = DatabaseConnector()
         self.dbConnector.connectToDatabase()
+        #XML x2
         self.dbConnector.loadAllTeachers()
         self.dbConnector.loadAllTimeFrames()
         self.setupEventConnections()
