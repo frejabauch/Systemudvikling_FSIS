@@ -2,6 +2,8 @@ from lxml import objectify
 from Teacher import Teacher
 from TimeFrame import TimeFrame
 
+#Inspiration sysdev cookbook
+
 class Elements:
     @staticmethod
     def create_teacher(teacher_obj: Teacher):
