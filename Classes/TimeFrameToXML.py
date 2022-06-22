@@ -3,6 +3,8 @@ from io import BytesIO
 from Timeframes import TimeFrames
 from Elements import Elements
 
+# Used sysdev cookbook
+
 class TimeFrameToXML:
     def __init__(self, timeframes: TimeFrames):
         self.timeframes = timeframes

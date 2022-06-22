@@ -1,4 +1,5 @@
 from TimeFrame import TimeFrame
+# Used sysdev cookbook
 
 class TimeFrames:
     def __init__(self):

@@ -2,6 +2,8 @@ from lxml import objectify
 from TimeFrame import TimeFrame
 from Timeframes import TimeFrames
 
+# Used sysdev cookbook
+
 class XMLToTimeFrame:
     def __init__(self, xml_filename):
         self.xml_filename = xml_filename
