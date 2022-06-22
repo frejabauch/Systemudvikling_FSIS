@@ -6,5 +6,11 @@ class CourseSecretary(User):
         self.Course_secretary = Course_secretary
         self.CSID = self.UserID
 
-    def createSchedule(Course):
-        Course.Schedule.createSchedule()
+    def CreateSchedule():
+        pass
+
+    def ViewSchedule():
+        pass
+
+    def EditSchedule():
+        pass

@@ -5,3 +5,7 @@ class Course():
         self.TeacherID = TeacherID
         self.Faculty = Faculty
         self.ScheduleID = ScheduleID
+        self.TimeFrames = []
+    
+    def addTimeFrame(self, inputFrame):
+        self.TimeFrames.append(inputFrame)

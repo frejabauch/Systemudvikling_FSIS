@@ -1,4 +1,3 @@
-USE new_iter3;
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS Location;
 DROP TABLE IF EXISTS Course;
@@ -96,7 +95,6 @@ CREATE TABLE IF NOT EXISTS `TimeFrame`(
 CREATE TABLE IF NOT EXISTS `Student`(
 	`StudentID` VARCHAR(6),
     `Enrollment` int NOT NULL,
-    `CourseID` VARCHAR(255),
     PRIMARY KEY (`StudentID`),
     FOREIGN KEY (`StudentID`) REFERENCES `User`(`UserID`),
     FOREIGN KEY (`Enrollment`) REFERENCES `Education`(`EducationID`)
